@@ -1,0 +1,52 @@
+{% extends "app_base.html" %}
+{% block title %}My dashboard{% endblock %}
+{% block app_content %}
+<div class="app-head">
+  <div><h1>Hello, {{ user.first_name|default:"there" }}</h1><p>Here's an overview of your health and upcoming care.</p></div>
+  <a href="{% url 'doctors:list' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Book appointment</a>
+</div>
+<div class="grid grid-4 stats-grid">
+  <div class="stat-card"><span class="icon-tile"><i class="fa-regular fa-calendar"></i></span><div><div class="value">{{ stats.upcoming }}</div><div class="label">Upcoming visits</div></div></div>
+  <div class="stat-card"><span class="icon-tile tile-success"><i class="fa-solid fa-circle-check"></i></span><div><div class="value">{{ stats.completed }}</div><div class="label">Completed</div></div></div>
+  <div class="stat-card"><span class="icon-tile tile-accent"><i class="fa-solid fa-user-doctor"></i></span><div><div class="value">{{ stats.doctors }}</div><div class="label">My doctors</div></div></div>
+  <div class="stat-card"><span class="icon-tile tile-violet"><i class="fa-solid fa-file-medical"></i></span><div><div class="value">{{ records|length }}</div><div class="label">Recent records</div></div></div>
+</div>
+<div class="dash-grid">
+  <div class="grid">
+    {% if next_appointment %}
+    <div class="card next-appt">
+      <span class="text-muted text-sm">Next appointment</span>
+      <div class="flex items-center gap-2 mt-1">{% include "partials/avatar.html" with person=next_appointment.doctor.user image=next_appointment.doctor.image size="avatar-lg" %}<div><h3 class="mb-0">{{ next_appointment.doctor }}</h3><span class="text-muted text-sm">{{ next_appointment.doctor.specialty }}</span></div></div>
+      <div class="meta"><div><i class="fa-regular fa-calendar"></i> {{ next_appointment.date|date:"D, M j" }}</div><div><i class="fa-regular fa-clock"></i> {{ next_appointment.time|time:"g:i A" }}</div><div>{% if next_appointment.visit_type == "video" %}<i class="fa-solid fa-video"></i> Video{% else %}<i class="fa-solid fa-hospital"></i> In-person{% endif %}</div><div>{{ next_appointment.get_status_display }}</div></div>
+      <a href="{{ next_appointment.get_absolute_url }}" class="btn btn-outline btn-sm mt-2" style="position:relative;z-index:1">View details</a>
+    </div>
+    {% endif %}
+    <div class="card"><div class="card-header"><h3>Health overview</h3><a class="card-link" href="{% url 'records:metrics' %}">Log reading</a></div>{% include "dashboard/_metrics.html" %}</div>
+    <div class="card">
+      <div class="card-header"><h3>Upcoming appointments</h3><a class="card-link" href="{% url 'appointments:list' %}">View all</a></div>
+      {% for appt in upcoming %}{% include "partials/appt_row.html" %}{% empty %}<div class="empty-state"><i class="fa-regular fa-calendar-plus"></i><p>No upcoming appointments.</p><a href="{% url 'doctors:list' %}" class="btn btn-soft btn-sm">Find a doctor</a></div>{% endfor %}
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-header"><h3>My profile</h3><a class="card-link" href="{% url 'accounts:profile' %}">Edit</a></div>
+      <dl class="info-list">
+        <dt>Age</dt><dd>{{ user.age|default:"-" }}</dd>
+        <dt>Blood type</dt><dd>{{ profile.blood_type|default:"-" }}</dd>
+        <dt>Height</dt><dd>{% if profile.height_cm %}{{ profile.height_cm }} cm{% else %}-{% endif %}</dd>
+        <dt>Weight</dt><dd>{% if profile.weight_kg %}{{ profile.weight_kg }} kg{% else %}-{% endif %}</dd>
+        <dt>BMI</dt><dd>{{ profile.bmi|default:"-" }}</dd>
+        <dt>Allergies</dt><dd>{{ profile.allergies|default:"None" }}</dd>
+      </dl>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Recent records</h3><a class="card-link" href="{% url 'records:list' %}">View all</a></div>
+      {% for r in records %}<div class="record-item"><span class="icon-tile"><i class="fa-solid {{ r.icon }}"></i></span><div><strong style="color:var(--ink);font-size:.9rem">{{ r.title }}</strong><div class="text-xs text-muted">{{ r.get_record_type_display }} · {{ r.record_date|date:"M j, Y" }}</div></div></div>{% empty %}<p class="text-muted text-sm mb-0">No records yet.</p>{% endfor %}
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Visit history</h3></div>
+      <div class="timeline">{% for a in recent %}<div class="timeline-item {% if a.status == 'completed' %}done{% elif a.status == 'cancelled' %}cancel{% endif %}"><strong style="color:var(--ink);font-size:.9rem">{{ a.doctor }}</strong><div class="text-xs text-muted">{{ a.date|date:"M j, Y" }} · {{ a.get_status_display }}</div></div>{% empty %}<p class="text-muted text-sm mb-0">No past visits.</p>{% endfor %}</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

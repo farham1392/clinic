@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}{{ doctor }} - {{ doctor.specialty }}{% endblock %}
+{% block content %}
+<section class="profile-hero">
+  <div class="container">
+    <div class="breadcrumbs"><a href="{% url 'core:home' %}">Home</a> / <a href="{% url 'doctors:list' %}">Doctors</a> / {{ doctor }}</div>
+    <div class="wrap-inner">
+      {% if doctor.image %}<img src="{{ doctor.image.url }}" alt="{{ doctor }}" class="avatar avatar-xl">{% else %}{% include "partials/avatar.html" with person=doctor.user size="avatar-xl" %}{% endif %}
+      <div class="grow">
+        <div class="flex items-center gap-1 wrap"><h1 style="font-size:2rem" class="mb-0">{{ doctor }}</h1><span class="badge badge-primary"><i class="fa-solid fa-circle-check"></i> Verified</span></div>
+        <div class="text-primary fw-600">{{ doctor.title|default:doctor.specialty }}</div>
+        <div class="flex items-center gap-1 mt-1">{% include "partials/stars.html" with value=doctor.rating %}<span class="text-sm text-muted">{{ doctor.rating|floatformat:1 }} · {{ doctor.review_count }} review{{ doctor.review_count|pluralize }}</span></div>
+        <div class="stat-pills">
+          <div class="stat-pill"><strong>{{ doctor.years_experience }}+ yrs</strong>Experience</div>
+          <div class="stat-pill"><strong>{{ doctor.patients_served }}+</strong>Patients</div>
+          <div class="stat-pill"><strong>${{ doctor.consultation_fee|floatformat:0 }}</strong>Per visit</div>
+          {% if doctor.location %}<div class="stat-pill"><strong><i class="fa-solid fa-location-dot text-primary"></i> {{ doctor.location }}</strong>{{ doctor.clinic_name }}</div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container profile-layout">
+  <div class="grid">
+    <div class="card"><h3>About</h3><p class="mb-0">{{ doctor.bio|default:"This doctor hasn't added a bio yet."|linebreaksbr }}</p></div>
+    <div class="grid grid-2">
+      <div class="card"><h3>Education</h3><ul class="list-plain">{% for e in doctor.education_list %}<li><i class="fa-solid fa-graduation-cap"></i>{{ e }}</li>{% empty %}<li class="text-muted">Not provided</li>{% endfor %}</ul></div>
+      <div class="card"><h3>Languages & services</h3><ul class="list-plain">{% for l in doctor.language_list %}<li><i class="fa-solid fa-language"></i>{{ l }}</li>{% endfor %}<li><i class="fa-solid fa-hospital"></i>In-person visits</li>{% if doctor.offers_video %}<li><i class="fa-solid fa-video"></i>Video consultations</li>{% endif %}</ul></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Patient reviews</h3><span class="badge badge-warning"><i class="fa-solid fa-star"></i> {{ doctor.rating|floatformat:1 }}</span></div>
+      {% if can_review %}
+      <form method="post" action="{% url 'doctors:review' doctor.slug %}" class="card mb-2" style="background:var(--bg)">
+        {% csrf_token %}<strong style="color:var(--ink)">Rate your recent visit</strong>
+        <div class="rating-input mt-1">{% for radio in review_form.rating %}{{ radio.tag }}<label for="{{ radio.id_for_label }}" title="{{ radio.choice_label }}"><i class="fa-solid fa-star"></i></label>{% endfor %}</div>
+        {{ review_form.comment }}
+        <button class="btn btn-primary btn-sm mt-1" type="submit">Submit review</button>
+      </form>
+      {% endif %}
+      {% for r in reviews %}
+      <div class="review"><div class="flex items-center gap-1">{% include "partials/avatar.html" with person=r.patient size="avatar-xs" %}<strong style="color:var(--ink)">{{ r.patient.first_name }} {{ r.patient.last_name|slice:":1" }}.</strong>{% include "partials/stars.html" with value=r.rating %}<span class="text-xs text-muted" style="margin-left:auto">{{ r.created_at|timesince }} ago</span></div>{% if r.comment %}<p class="mt-1 mb-0 text-sm">{{ r.comment }}</p>{% endif %}</div>
+      {% empty %}<p class="text-muted mb-0">No reviews yet.</p>{% endfor %}
+    </div>
+    {% if related_doctors %}<div><h3>Other {{ doctor.specialty }} specialists</h3><div class="grid grid-3">{% for doctor in related_doctors %}{% include "partials/doctor_card.html" %}{% endfor %}</div></div>{% endif %}
+  </div>
+  <aside class="grid booking-card">
+    <div class="card">
+      <h3>Book an appointment</h3>
+      <p class="text-sm text-muted">Pick a day to see open slots.</p>
+      <div class="day-strip mb-2">
+        {% for d in days %}<a class="day-chip {% if not d.count %}disabled{% endif %}" {% if d.count %}href="{% url 'appointments:book' doctor.slug %}?date={{ d.date|date:'Y-m-d' }}"{% endif %}><small>{{ d.date|date:"D" }}</small><strong>{{ d.date|date:"j" }}</strong><em>{% if d.count %}{{ d.count }} slots{% else %}-{% endif %}</em></a>{% endfor %}
+      </div>
+      {% if doctor.is_accepting_patients %}
+        <a href="{% url 'appointments:book' doctor.slug %}" class="btn btn-primary btn-block btn-lg"><i class="fa-regular fa-calendar-plus"></i> Book appointment</a>
+      {% else %}<div class="alert alert-warning alert-inline">Not accepting new patients right now.</div>{% endif %}
+      <p class="text-xs text-muted text-center mt-1 mb-0">Free cancellation up to the appointment time.</p>
+    </div>
+    <div class="card"><h3>Working hours</h3><table class="hours-table">{% for a in availability %}<tr><td>{% ifchanged a.weekday %}{{ a.get_weekday_display }}{% endifchanged %}</td><td>{{ a.start_time|time:"g:i A" }} - {{ a.end_time|time:"g:i A" }}</td></tr>{% empty %}<tr><td class="text-muted">No hours published yet.</td></tr>{% endfor %}</table></div>
+  </aside>
+</div>
+{% endblock %}

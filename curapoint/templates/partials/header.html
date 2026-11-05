@@ -1,0 +1,41 @@
+{% load static cura %}
+<header class="site-header">
+  <div class="container">
+    <a href="{% url 'core:home' %}" class="brand" aria-label="CuraPoint home">
+      <span class="brand-mark"><i class="fa-solid fa-staff-snake"></i></span>
+      <span>Cura<b>Point</b></span>
+    </a>
+    <nav class="main-nav" aria-label="Main">
+      <a href="{% url 'core:home' %}" class="{% active 'core:home' %}">Home</a>
+      <a href="{% url 'doctors:list' %}" class="{% active 'doctors:list' 'doctors:detail' %}">Find doctors</a>
+      <a href="{% url 'core:home' %}#specialties">Specialties</a>
+      <a href="{% url 'core:about' %}" class="{% active 'core:about' %}">About</a>
+      {% if user.is_authenticated %}<a href="{% url 'dashboard:home' %}" class="{% active 'dashboard:*' %}">Dashboard</a>{% endif %}
+    </nav>
+    <div class="header-actions">
+      {% if user.is_authenticated %}
+        <div class="user-menu">
+          <button type="button" data-dropdown="user-dropdown" aria-haspopup="true">
+            {% include "partials/avatar.html" with person=user size="avatar-xs" %}
+            <span class="name">{{ user.first_name|default:user.email }}</span>
+            <i class="fa-solid fa-chevron-down text-xs text-muted"></i>
+          </button>
+          <div class="dropdown" id="user-dropdown">
+            <div class="text-xs text-muted" style="padding:.4rem .75rem">Signed in as<br><b class="text-sm" style="color:var(--ink)">{{ user.email }}</b></div>
+            <hr>
+            <a href="{% url 'dashboard:home' %}"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+            <a href="{% url 'appointments:list' %}"><i class="fa-regular fa-calendar"></i> Appointments</a>
+            <a href="{% url 'accounts:profile' %}"><i class="fa-regular fa-user"></i> Profile settings</a>
+            {% if user.is_staff %}<a href="{% url 'admin:index' %}"><i class="fa-solid fa-shield-halved"></i> Admin</a>{% endif %}
+            <hr>
+            <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}<button type="submit"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</button></form>
+          </div>
+        </div>
+      {% else %}
+        <a href="{% url 'accounts:login' %}" class="btn btn-outline btn-sm hide-sm">Log in</a>
+        <a href="{% url 'accounts:signup' %}" class="btn btn-primary btn-sm">Sign up</a>
+      {% endif %}
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>

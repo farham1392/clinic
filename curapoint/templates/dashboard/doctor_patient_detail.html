@@ -1,0 +1,30 @@
+{% extends "app_base.html" %}
+{% block title %}{{ patient }} - Patient chart{% endblock %}
+{% block app_content %}
+<div class="app-head"><div><div class="breadcrumbs"><a href="{% url 'dashboard:patients' %}">My patients</a> / {{ patient }}</div><h1>Patient chart</h1></div></div>
+<div class="dash-grid" style="margin-top:0">
+  <div class="grid">
+    <div class="card"><div class="card-header"><h3>Vitals</h3></div>{% include "dashboard/_metrics.html" %}</div>
+    <div class="card">
+      <div class="card-header"><h3>Medical records</h3></div>
+      {% for r in records %}<div class="record-item"><span class="icon-tile"><i class="fa-solid {{ r.icon }}"></i></span><div class="grow"><div class="flex justify-between wrap gap-1"><strong style="color:var(--ink)">{{ r.title }}</strong><span class="text-xs text-muted">{{ r.record_date|date:"M j, Y" }}</span></div><div class="text-xs text-muted">{{ r.get_record_type_display }}{% if r.doctor %} · {{ r.doctor }}{% endif %}</div>{% if r.description %}<p class="text-sm mb-0 mt-1">{{ r.description|linebreaksbr }}</p>{% endif %}</div></div>{% empty %}<p class="text-muted mb-0">No records yet.</p>{% endfor %}
+    </div>
+    <form method="post" enctype="multipart/form-data" class="card" novalidate>
+      {% csrf_token %}<h3>Add medical record</h3>
+      {% include "partials/form_errors.html" %}
+      <div class="form-row">{% include "partials/field.html" with field=form.record_type %}{% include "partials/field.html" with field=form.record_date %}</div>
+      {% include "partials/field.html" with field=form.title %}
+      {% include "partials/field.html" with field=form.description %}
+      {% include "partials/field.html" with field=form.attachment %}
+      <button class="btn btn-primary" type="submit"><i class="fa-solid fa-plus"></i> Add record</button>
+    </form>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="flex items-center gap-2 mb-2">{% include "partials/avatar.html" with person=patient size="avatar-lg" %}<div><strong style="color:var(--ink)">{{ patient }}</strong><div class="text-sm text-muted">{{ patient.email }}</div></div></div>
+      <dl class="info-list"><dt>Age</dt><dd>{{ patient.age|default:"-" }}</dd><dt>Gender</dt><dd>{{ patient.get_gender_display|default:"-" }}</dd><dt>Phone</dt><dd>{{ patient.phone|default:"-" }}</dd><dt>Blood type</dt><dd>{{ profile.blood_type|default:"-" }}</dd><dt>BMI</dt><dd>{{ profile.bmi|default:"-" }}</dd><dt>Allergies</dt><dd>{{ profile.allergies|default:"None" }}</dd><dt>Conditions</dt><dd>{{ profile.chronic_conditions|default:"None" }}</dd></dl>
+    </div>
+    <div class="card"><div class="card-header"><h3>Visits with you</h3></div>{% for appt in appointments %}{% include "partials/appt_row.html" with as_doctor=True %}{% endfor %}</div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{% block meta_description %}CuraPoint - find trusted doctors, book appointments and manage your health in one place.{% endblock %}">
+  <title>{% block title %}{{ SITE_NAME }}{% endblock %} · {{ SITE_TAGLINE }}</title>
+  <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'vendor/fa/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="layout {% block body_class %}{% endblock %}">
+  {% include "partials/header.html" %}
+  {% include "partials/messages.html" %}
+  <main id="content" class="grow">
+    {% block content %}{% endblock %}
+  </main>
+  {% block footer %}{% include "partials/footer.html" %}{% endblock %}
+  <script src="{% static 'js/main.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

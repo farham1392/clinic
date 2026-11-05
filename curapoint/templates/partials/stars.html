@@ -1,0 +1,1 @@
+{% load cura %}<span class="stars" aria-label="{{ value|floatformat:1 }} out of 5">{% for s in value|stars %}{% if s == "full" %}<i class="fa-solid fa-star"></i>{% elif s == "half" %}<i class="fa-solid fa-star-half-stroke"></i>{% else %}<i class="fa-solid fa-star empty"></i>{% endif %}{% endfor %}</span>

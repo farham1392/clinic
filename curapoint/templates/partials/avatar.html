@@ -1,0 +1,1 @@
+{% load cura %}{% if image %}<span class="avatar {{ size }}"><img src="{{ image.url }}" alt="{{ person }}"></span>{% elif person.avatar %}<span class="avatar {{ size }}"><img src="{{ person.avatar.url }}" alt="{{ person }}"></span>{% else %}<span class="avatar {{ size }} {{ person|avatar_color }}" aria-hidden="true">{{ person.initials }}</span>{% endif %}
