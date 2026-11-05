@@ -4,6 +4,8 @@ from django.db import IntegrityError, transaction
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods, require_POST
+from django.utils.translation import gettext as _
+from django.utils.formats import date_format, time_format
 
 from core.decorators import doctor_required, patient_required
 from doctors.models import Doctor
@@ -36,7 +38,7 @@ def book(request, slug):
         except IntegrityError:
             form.add_error("time", "Sorry, that slot was just taken. Please pick another time.")
         else:
-            messages.success(request, f"Appointment requested with {doctor} on {appt.date:%b %d} at {appt.time:%I:%M %p}.")
+            messages.success(request, _("Appointment requested with %(doctor)s on %(date)s at %(time)s.") % {"doctor": doctor, "date": date_format(appt.date, "M j"), "time": time_format(appt.time, "g:i A")})
             return redirect("appointments:detail", pk=appt.pk)
     return render(request, "appointments/book.html", {"doctor": doctor, "form": form})
 
@@ -76,11 +78,11 @@ def appointment_detail(request, pk):
 def cancel(request, pk):
     appt = _get_for_user(request.user, pk)
     if not appt.can_cancel:
-        messages.error(request, "This appointment can no longer be cancelled.")
+        messages.error(request, _("This appointment can no longer be cancelled."))
     else:
         appt.status = Appointment.Status.CANCELLED
         appt.save(update_fields=["status", "updated_at"])
-        messages.success(request, "Appointment cancelled.")
+        messages.success(request, _("Appointment cancelled."))
     return redirect(request.POST.get("next") or appt.get_absolute_url())
 
 
@@ -91,7 +93,7 @@ def update_status(request, pk):
     form = AppointmentStatusForm(request.POST, instance=appt)
     if form.is_valid():
         form.save()
-        messages.success(request, f"Appointment marked as {appt.get_status_display().lower()}.")
+        messages.success(request, _("Appointment marked as %(status)s.") % {"status": appt.get_status_display()})
     else:
         for errors in form.errors.values():
             for e in errors:
@@ -109,7 +111,7 @@ def quick_action(request, pk, action):
     form = AppointmentStatusForm({"status": target, "doctor_notes": appt.doctor_notes}, instance=appt)
     if form.is_valid():
         form.save()
-        messages.success(request, f"Appointment with {appt.patient} {appt.get_status_display().lower()}.")
+        messages.success(request, _("Appointment with %(patient)s: %(status)s.") % {"patient": appt.patient, "status": appt.get_status_display()})
     else:
-        messages.error(request, "That action isn't allowed for this appointment.")
+        messages.error(request, _("That action isn't allowed for this appointment."))
     return redirect(request.POST.get("next") or "dashboard:doctor")

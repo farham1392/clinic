@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models import Avg, Count
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.translation import gettext, gettext_lazy as _
 
 
 class Specialty(models.Model):
@@ -19,7 +20,7 @@ class Specialty(models.Model):
         verbose_name_plural = "specialties"
 
     def __str__(self):
-        return self.name
+        return gettext(self.name)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -65,7 +66,7 @@ class Doctor(models.Model):
         ordering = ["-is_featured", "-rating", "user__first_name"]
 
     def __str__(self):
-        return f"Dr. {self.user.get_full_name()}"
+        return gettext("Dr. %(name)s") % {"name": self.user.get_full_name()}
 
     @property
     def name(self):
@@ -144,13 +145,13 @@ class Doctor(models.Model):
 
 class Availability(models.Model):
     class Weekday(models.IntegerChoices):
-        MONDAY = 0, "Monday"
-        TUESDAY = 1, "Tuesday"
-        WEDNESDAY = 2, "Wednesday"
-        THURSDAY = 3, "Thursday"
-        FRIDAY = 4, "Friday"
-        SATURDAY = 5, "Saturday"
-        SUNDAY = 6, "Sunday"
+        MONDAY = 0, _("Monday")
+        TUESDAY = 1, _("Tuesday")
+        WEDNESDAY = 2, _("Wednesday")
+        THURSDAY = 3, _("Thursday")
+        FRIDAY = 4, _("Friday")
+        SATURDAY = 5, _("Saturday")
+        SUNDAY = 6, _("Sunday")
 
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name="availability")
     weekday = models.IntegerField(choices=Weekday.choices)

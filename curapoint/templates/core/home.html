@@ -1,30 +1,31 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load humanize %}
-{% block title %}Find & book trusted doctors{% endblock %}
+{% block title %}{% translate "Find & book trusted doctors" %}{% endblock %}
 {% block content %}
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <span class="eyebrow"><i class="fa-solid fa-shield-heart"></i> Trusted by thousands of patients</span>
-      <h1>Your health, <span>one point</span> of care.</h1>
-      <p class="lead">Find the right specialist, book an appointment in seconds and keep all your medical records in one secure place.</p>
+      <span class="eyebrow"><i class="fa-solid fa-shield-heart"></i> {% translate "Trusted by thousands of patients" %}</span>
+      <h1>{% blocktranslate %}Your health, <span>one point</span> of care.{% endblocktranslate %}</h1>
+      <p class="lead">{% translate "Find the right specialist, book an appointment in seconds and keep all your medical records in one secure place." %}</p>
       <form class="search-bar" action="{% url 'doctors:list' %}" method="get" role="search">
-        <label class="field"><i class="fa-solid fa-magnifying-glass"></i><span class="sr-only">Search</span><input type="search" name="q" placeholder="Doctor name or condition"></label>
-        <label class="field"><i class="fa-solid fa-stethoscope"></i><span class="sr-only">Specialty</span>
-          <select name="specialty"><option value="">All specialties</option>{% for s in all_specialties %}<option value="{{ s.slug }}">{{ s.name }}</option>{% endfor %}</select>
+        <label class="field"><i class="fa-solid fa-magnifying-glass"></i><span class="sr-only">{% translate "Search" %}</span><input type="search" name="q" placeholder="{% translate "Doctor name or condition" %}"></label>
+        <label class="field"><i class="fa-solid fa-stethoscope"></i><span class="sr-only">{% translate "Specialty" %}</span>
+          <select name="specialty"><option value="">{% translate "All specialties" %}</option>{% for s in all_specialties %}<option value="{{ s.slug }}">{{ s }}</option>{% endfor %}</select>
         </label>
-        <button class="btn btn-primary" type="submit">Search</button>
+        <button class="btn btn-primary" type="submit">{% translate "Search" %}</button>
       </form>
       <div class="hero-trust">
-        <div><strong>{{ stats.doctors|intcomma }}+</strong><span>Verified doctors</span></div>
-        <div><strong>{{ stats.specialties }}</strong><span>Specialties</span></div>
-        <div><strong>4.8<i class="fa-solid fa-star" style="color:#f59e0b;font-size:1rem"></i></strong><span>Average rating</span></div>
+        <div><strong>{{ stats.doctors|intcomma }}+</strong><span>{% translate "Verified doctors" %}</span></div>
+        <div><strong>{{ stats.specialties }}</strong><span>{% translate "Specialties" %}</span></div>
+        <div><strong>4.8<i class="fa-solid fa-star" style="color:#f59e0b;font-size:1rem"></i></strong><span>{% translate "Average rating" %}</span></div>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
       <div class="hero-illustration"><i class="fa-solid fa-user-doctor"></i></div>
-      <div class="float-card one"><span class="ic tile-success"><i class="fa-solid fa-calendar-check"></i></span><div><strong>Appointment confirmed</strong><span class="text-muted text-xs">Tomorrow, 10:30 AM</span></div></div>
-      <div class="float-card two"><span class="ic tile-danger"><i class="fa-solid fa-heart-pulse"></i></span><div><strong>72 bpm</strong><span class="text-muted text-xs">Heart rate · Normal</span></div></div>
+      <div class="float-card one"><span class="ic tile-success"><i class="fa-solid fa-calendar-check"></i></span><div><strong>{% translate "Appointment confirmed" %}</strong><span class="text-muted text-xs">{% translate "Tomorrow, 10:30 AM" %}</span></div></div>
+      <div class="float-card two"><span class="ic tile-danger"><i class="fa-solid fa-heart-pulse"></i></span><div><strong>{% translate "72 bpm" %}</strong><span class="text-muted text-xs">{% translate "Heart rate · Normal" %}</span></div></div>
     </div>
   </div>
 </section>
@@ -32,15 +33,15 @@
 <section class="section" id="specialties">
   <div class="container">
     <div class="section-head">
-      <div><span class="section-tag">Specialties</span><h2>Browse by specialty</h2><p>Care for every need, from routine check-ups to specialist consultations.</p></div>
-      <a href="{% url 'doctors:list' %}" class="btn btn-outline">View all doctors <i class="fa-solid fa-arrow-right"></i></a>
+      <div><span class="section-tag">{% translate "Specialties" %}</span><h2>{% translate "Browse by specialty" %}</h2><p>{% translate "Care for every need, from routine check-ups to specialist consultations." %}</p></div>
+      <a href="{% url 'doctors:list' %}" class="btn btn-outline">{% translate "View all doctors" %} <i class="fa-solid fa-arrow-right"></i></a>
     </div>
     <div class="grid grid-4">
       {% for s in specialties %}
       <a class="specialty-card" href="{% url 'doctors:list' %}?specialty={{ s.slug }}">
         <span class="ic"><i class="fa-solid {{ s.icon }}"></i></span>
-        <h3>{{ s.name }}</h3>
-        <span>{{ s.doctor_count }} doctor{{ s.doctor_count|pluralize }}</span>
+        <h3>{{ s }}</h3>
+        <span>{% blocktranslate count n=s.doctor_count %}{{ n }} doctor{% plural %}{{ n }} doctors{% endblocktranslate %}</span>
       </a>
       {% endfor %}
     </div>
@@ -50,25 +51,25 @@
 <section class="section" style="background:#fff">
   <div class="container">
     <div class="section-head">
-      <div><span class="section-tag">Top rated</span><h2>Meet our featured doctors</h2><p>Highly rated specialists ready to help you feel your best.</p></div>
+      <div><span class="section-tag">{% translate "Top rated" %}</span><h2>{% translate "Meet our featured doctors" %}</h2><p>{% translate "Highly rated specialists ready to help you feel your best." %}</p></div>
     </div>
     <div class="grid grid-4">
-      {% for doctor in featured_doctors %}{% include "partials/doctor_card.html" %}{% empty %}<p class="text-muted">No doctors yet.</p>{% endfor %}
+      {% for doctor in featured_doctors %}{% include "partials/doctor_card.html" %}{% empty %}<p class="text-muted">{% translate "No doctors yet." %}</p>{% endfor %}
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <div class="section-head"><div><span class="section-tag">How it works</span><h2>Care in three simple steps</h2></div></div>
+    <div class="section-head"><div><span class="section-tag">{% translate "How it works" %}</span><h2>{% translate "Care in three simple steps" %}</h2></div></div>
     <div class="grid grid-3 steps">
-      <div class="step"><span class="icon-tile mb-2"><i class="fa-solid fa-magnifying-glass"></i></span><h3>Find your doctor</h3><p class="text-muted mb-0">Search by specialty, location, rating or availability and compare verified profiles.</p></div>
-      <div class="step"><span class="icon-tile tile-accent mb-2"><i class="fa-regular fa-calendar-check"></i></span><h3>Book instantly</h3><p class="text-muted mb-0">Pick a time that works for you, in person or by video, and get confirmation fast.</p></div>
-      <div class="step"><span class="icon-tile tile-violet mb-2"><i class="fa-solid fa-file-waveform"></i></span><h3>Track your health</h3><p class="text-muted mb-0">Access records, prescriptions and health metrics from your personal dashboard.</p></div>
+      <div class="step"><span class="icon-tile mb-2"><i class="fa-solid fa-magnifying-glass"></i></span><h3>{% translate "Find your doctor" %}</h3><p class="text-muted mb-0">{% translate "Search by specialty, location, rating or availability and compare verified profiles." %}</p></div>
+      <div class="step"><span class="icon-tile tile-accent mb-2"><i class="fa-regular fa-calendar-check"></i></span><h3>{% translate "Book instantly" %}</h3><p class="text-muted mb-0">{% translate "Pick a time that works for you, in person or by video, and get confirmation fast." %}</p></div>
+      <div class="step"><span class="icon-tile tile-violet mb-2"><i class="fa-solid fa-file-waveform"></i></span><h3>{% translate "Track your health" %}</h3><p class="text-muted mb-0">{% translate "Access records, prescriptions and health metrics from your personal dashboard." %}</p></div>
     </div>
     <div class="cta-band mt-4">
-      <div><h2>Are you a healthcare professional?</h2><p>Join CuraPoint to manage appointments, patients and your schedule with ease.</p></div>
-      <a href="{% url 'accounts:signup' %}?role=doctor" class="btn btn-outline btn-lg">Join as a doctor <i class="fa-solid fa-arrow-right"></i></a>
+      <div><h2>{% translate "Are you a healthcare professional?" %}</h2><p>{% translate "Join CuraPoint to manage appointments, patients and your schedule with ease." %}</p></div>
+      <a href="{% url 'accounts:signup' %}?role=doctor" class="btn btn-outline btn-lg">{% translate "Join as a doctor" %} <i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </div>
 </section>

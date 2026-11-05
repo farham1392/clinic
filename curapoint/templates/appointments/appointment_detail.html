@@ -1,50 +1,51 @@
 {% extends "app_base.html" %}
-{% block title %}Appointment details{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Appointment details" %}{% endblock %}
 {% block app_content %}
 <div class="app-head">
-  <div><div class="breadcrumbs"><a href="{% url 'appointments:list' %}">Appointments</a> / #{{ appointment.pk }}</div><h1>Appointment details</h1></div>
+  <div><div class="breadcrumbs"><a href="{% url 'appointments:list' %}">{% translate "Appointments" %}</a> / #{{ appointment.pk }}</div><h1>{% translate "Appointment details" %}</h1></div>
   <span class="badge badge-{{ appointment.status_color }}" style="font-size:.85rem;padding:.4rem .9rem">{{ appointment.get_status_display }}</span>
 </div>
 <div class="dash-grid" style="margin-top:0">
   <div class="grid">
     <div class="card next-appt">
-      <span class="text-muted text-sm">{% if appointment.visit_type == "video" %}<i class="fa-solid fa-video"></i> Video consultation{% else %}<i class="fa-solid fa-hospital"></i> In-person visit{% endif %}</span>
+      <span class="text-muted text-sm">{% if appointment.visit_type == "video" %}<i class="fa-solid fa-video"></i> {% translate "Video consultation" %}{% else %}<i class="fa-solid fa-hospital"></i> {% translate "In-person visit" %}{% endif %}</span>
       <h3 class="mt-1" style="font-size:1.4rem">{{ appointment.date|date:"l, F j, Y" }}</h3>
       <div class="meta"><div><i class="fa-regular fa-clock"></i> {{ appointment.time|time:"g:i A" }}</div><div><i class="fa-solid fa-location-dot"></i> {{ appointment.doctor.clinic_name|default:"Clinic" }}</div><div><i class="fa-solid fa-dollar-sign"></i> {{ appointment.fee }}</div></div>
     </div>
     <div class="card">
-      <h3>Reason for visit</h3><p>{{ appointment.reason }}</p>
-      {% if appointment.notes %}<h3>Patient notes</h3><p class="mb-0">{{ appointment.notes|linebreaksbr }}</p>{% endif %}
+      <h3>{% translate "Reason for visit" %}</h3><p>{{ appointment.reason }}</p>
+      {% if appointment.notes %}<h3>{% translate "Patient notes" %}</h3><p class="mb-0">{{ appointment.notes|linebreaksbr }}</p>{% endif %}
     </div>
     {% if status_form %}
     <form method="post" action="{% url 'appointments:status' appointment.pk %}" class="card">
       {% csrf_token %}
-      <h3>Manage appointment</h3>
+      <h3>{% translate "Manage appointment" %}</h3>
       {% include "partials/field.html" with field=status_form.status %}
       {% include "partials/field.html" with field=status_form.doctor_notes %}
-      <div class="flex gap-1 wrap"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> Save</button><a href="{% url 'dashboard:patient_detail' appointment.patient.pk %}" class="btn btn-outline"><i class="fa-solid fa-notes-medical"></i> Patient chart</a></div>
+      <div class="flex gap-1 wrap"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-floppy-disk"></i> {% translate "Save" %}</button><a href="{% url 'dashboard:patient_detail' appointment.patient.pk %}" class="btn btn-outline"><i class="fa-solid fa-notes-medical"></i> {% translate "Patient chart" %}</a></div>
     </form>
     {% endif %}
-    {% if records %}<div class="card"><h3>Linked records</h3>{% for r in records %}<div class="record-item"><span class="icon-tile"><i class="fa-solid {{ r.icon }}"></i></span><div><strong style="color:var(--ink)">{{ r.title }}</strong><div class="text-sm text-muted">{{ r.description|truncatechars:120 }}</div></div></div>{% endfor %}</div>{% endif %}
+    {% if records %}<div class="card"><h3>{% translate "Linked records" %}</h3>{% for r in records %}<div class="record-item"><span class="icon-tile"><i class="fa-solid {{ r.icon }}"></i></span><div><strong style="color:var(--ink)">{{ r.title }}</strong><div class="text-sm text-muted">{{ r.description|truncatechars:120 }}</div></div></div>{% endfor %}</div>{% endif %}
   </div>
   <aside class="grid">
     <div class="card">
       {% if user.is_doctor %}
         <div class="flex items-center gap-2 mb-2">{% include "partials/avatar.html" with person=appointment.patient size="avatar-lg" %}<div><strong style="color:var(--ink)">{{ appointment.patient }}</strong><div class="text-sm text-muted">{{ appointment.patient.email }}</div></div></div>
-        <dl class="info-list"><dt>Phone</dt><dd>{{ appointment.patient.phone|default:"-" }}</dd><dt>Age</dt><dd>{{ appointment.patient.age|default:"-" }}</dd><dt>Gender</dt><dd>{{ appointment.patient.get_gender_display|default:"-" }}</dd></dl>
+        <dl class="info-list"><dt>{% translate "Phone" %}</dt><dd>{{ appointment.patient.phone|default:"-" }}</dd><dt>{% translate "Age" %}</dt><dd>{{ appointment.patient.age|default:"-" }}</dd><dt>{% translate "Gender" %}</dt><dd>{{ appointment.patient.get_gender_display|default:"-" }}</dd></dl>
       {% else %}
         <div class="flex items-center gap-2 mb-2">{% include "partials/avatar.html" with person=appointment.doctor.user image=appointment.doctor.image size="avatar-lg" %}<div><strong style="color:var(--ink)">{{ appointment.doctor }}</strong><div class="text-sm text-primary">{{ appointment.doctor.specialty }}</div></div></div>
-        <dl class="info-list"><dt>Clinic</dt><dd>{{ appointment.doctor.clinic_name|default:"-" }}</dd><dt>Location</dt><dd>{{ appointment.doctor.location|default:"-" }}</dd></dl>
-        <a href="{{ appointment.doctor.get_absolute_url }}" class="btn btn-outline btn-block mt-2">View doctor profile</a>
+        <dl class="info-list"><dt>{% translate "Clinic" %}</dt><dd>{{ appointment.doctor.clinic_name|default:"-" }}</dd><dt>{% translate "Location" %}</dt><dd>{{ appointment.doctor.location|default:"-" }}</dd></dl>
+        <a href="{{ appointment.doctor.get_absolute_url }}" class="btn btn-outline btn-block mt-2">{% translate "View doctor profile" %}</a>
       {% endif %}
     </div>
     {% if appointment.can_cancel %}
-    <form method="post" action="{% url 'appointments:cancel' appointment.pk %}" class="card" data-confirm="Cancel this appointment?">
-      {% csrf_token %}<h3>Need to cancel?</h3><p class="text-sm text-muted">The time slot will be released for other patients.</p>
-      <button class="btn btn-danger btn-block" type="submit"><i class="fa-solid fa-xmark"></i> Cancel appointment</button>
+    <form method="post" action="{% url 'appointments:cancel' appointment.pk %}" class="card" data-confirm="{% translate "Cancel this appointment?" %}">
+      {% csrf_token %}<h3>{% translate "Need to cancel?" %}</h3><p class="text-sm text-muted">{% translate "The time slot will be released for other patients." %}</p>
+      <button class="btn btn-danger btn-block" type="submit"><i class="fa-solid fa-xmark"></i> {% translate "Cancel appointment" %}</button>
     </form>
     {% endif %}
-    <div class="card text-sm text-muted">Requested {{ appointment.created_at|date:"M j, Y g:i A" }}<br>Last updated {{ appointment.updated_at|timesince }} ago</div>
+    <div class="card text-sm text-muted">{% blocktranslate with d=appointment.created_at|date:"M j, Y g:i A" %}Requested {{ d }}{% endblocktranslate %}<br>{% blocktranslate with t=appointment.updated_at|timesince %}Last updated {{ t }} ago{% endblocktranslate %}</div>
   </aside>
 </div>
 {% endblock %}

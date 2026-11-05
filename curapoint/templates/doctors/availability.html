@@ -1,7 +1,8 @@
 {% extends "app_base.html" %}
-{% block title %}Availability{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Availability" %}{% endblock %}
 {% block app_content %}
-<div class="app-head"><div><h1>Availability</h1><p>Set the weekly hours when patients can book you.</p></div></div>
+<div class="app-head"><div><h1>{% translate "Availability" %}</h1><p>{% translate "Set the weekly hours when patients can book you." %}</p></div></div>
 <form method="post" class="card" novalidate>
   {% csrf_token %}
   {{ formset.management_form }}
@@ -14,8 +15,8 @@
       {% include "partials/field.html" with field=form.start_time %}
       {% include "partials/field.html" with field=form.end_time %}
       {% include "partials/field.html" with field=form.slot_minutes %}
-      <div class="form-group"><label class="check">{{ form.is_active }} Active</label></div>
-      <div class="form-group">{% if form.instance.pk %}<label class="check text-danger">{{ form.DELETE }} Remove</label>{% endif %}</div>
+      <div class="form-group"><label class="check">{{ form.is_active }} {% translate "Active" %}</label></div>
+      <div class="form-group">{% if form.instance.pk %}<label class="check text-danger">{{ form.DELETE }} {% translate "Remove" %}</label>{% endif %}</div>
       {% if form.non_field_errors %}<div class="invalid-feedback" style="grid-column:1/-1">{{ form.non_field_errors|join:" " }}</div>{% endif %}
     </div>
     {% endfor %}
@@ -27,12 +28,12 @@
       {% include "partials/field.html" with field=formset.empty_form.start_time %}
       {% include "partials/field.html" with field=formset.empty_form.end_time %}
       {% include "partials/field.html" with field=formset.empty_form.slot_minutes %}
-      <div class="form-group"><label class="check">{{ formset.empty_form.is_active }} Active</label></div><div></div>
+      <div class="form-group"><label class="check">{{ formset.empty_form.is_active }} {% translate "Active" %}</label></div><div></div>
     </div>
   </template>
   <div class="flex gap-1 mt-3 wrap">
-    <button type="button" class="btn btn-soft" data-add-form><i class="fa-solid fa-plus"></i> Add hours</button>
-    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save availability</button>
+    <button type="button" class="btn btn-soft" data-add-form><i class="fa-solid fa-plus"></i> {% translate "Add hours" %}</button>
+    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> {% translate "Save availability" %}</button>
   </div>
 </form>
 {% endblock %}

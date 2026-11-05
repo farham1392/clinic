@@ -1,9 +1,9 @@
-<div class="appt-row">
+{% load i18n %}<div class="appt-row">
   <div class="date-box"><small>{{ appt.date|date:"M" }}</small><strong>{{ appt.date|date:"d" }}</strong></div>
   {% if as_doctor %}{% include "partials/avatar.html" with person=appt.patient size="avatar-sm" %}{% else %}{% include "partials/avatar.html" with person=appt.doctor.user image=appt.doctor.image size="avatar-sm" %}{% endif %}
   <div class="info">
     <strong><a href="{{ appt.get_absolute_url }}" style="color:inherit">{% if as_doctor %}{{ appt.patient }}{% else %}{{ appt.doctor }}{% endif %}</a></strong>
-    <span>{% if as_doctor %}{{ appt.reason|truncatechars:48 }}{% else %}{{ appt.doctor.specialty }}{% endif %} · {% if appt.visit_type == "video" %}<i class="fa-solid fa-video"></i> Video{% else %}<i class="fa-solid fa-hospital"></i> In-person{% endif %}</span>
+    <span>{% if as_doctor %}{{ appt.reason|truncatechars:48 }}{% else %}{{ appt.doctor.specialty }}{% endif %} · {% if appt.visit_type == "video" %}<i class="fa-solid fa-video"></i> {% translate "Video" %}{% else %}<i class="fa-solid fa-hospital"></i> {% translate "In-person" %}{% endif %}</span>
   </div>
   <div class="when"><strong>{{ appt.time|time:"g:i A" }}</strong><span class="badge badge-{{ appt.status_color }}">{{ appt.get_status_display }}</span></div>
 </div>

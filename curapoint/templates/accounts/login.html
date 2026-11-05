@@ -1,36 +1,37 @@
 {% extends "base.html" %}
-{% block title %}Log in{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Log in" %}{% endblock %}
 {% block footer %}{% endblock %}
 {% block content %}
 <div class="auth-wrap">
   <aside class="auth-aside">
-    <h2>Welcome back to CuraPoint</h2>
-    <p>Sign in to manage appointments, view records and connect with your doctors.</p>
-    <div class="feature"><i class="fa-regular fa-calendar-check"></i><div><strong>Instant booking</strong><br><span class="text-sm" style="opacity:.85">Real-time availability from top doctors.</span></div></div>
-    <div class="feature"><i class="fa-solid fa-file-shield"></i><div><strong>Secure records</strong><br><span class="text-sm" style="opacity:.85">Your health history, protected and in one place.</span></div></div>
-    <div class="feature"><i class="fa-solid fa-video"></i><div><strong>Video consultations</strong><br><span class="text-sm" style="opacity:.85">See a doctor from the comfort of home.</span></div></div>
+    <h2>{% translate "Welcome back to CuraPoint" %}</h2>
+    <p>{% translate "Sign in to manage appointments, view records and connect with your doctors." %}</p>
+    <div class="feature"><i class="fa-regular fa-calendar-check"></i><div><strong>{% translate "Instant booking" %}</strong><br><span class="text-sm" style="opacity:.85">{% translate "Real-time availability from top doctors." %}</span></div></div>
+    <div class="feature"><i class="fa-solid fa-file-shield"></i><div><strong>{% translate "Secure records" %}</strong><br><span class="text-sm" style="opacity:.85">{% translate "Your health history, protected and in one place." %}</span></div></div>
+    <div class="feature"><i class="fa-solid fa-video"></i><div><strong>{% translate "Video consultations" %}</strong><br><span class="text-sm" style="opacity:.85">{% translate "See a doctor from the comfort of home." %}</span></div></div>
   </aside>
   <div class="auth-main">
     <div class="auth-box">
-      <h1>Log in</h1>
-      <p class="text-muted">New to CuraPoint? <a href="{% url 'accounts:signup' %}">Create an account</a></p>
+      <h1>{% translate "Log in" %}</h1>
+      <p class="text-muted">{% translate "New to CuraPoint?" %} <a href="{% url 'accounts:signup' %}">{% translate "Create an account" %}</a></p>
       <form method="post" novalidate class="mt-3">
         {% csrf_token %}
         {% include "partials/form_errors.html" %}
         {% include "partials/field.html" with field=form.username icon="fa-envelope" %}
         <div class="form-group{% if form.password.errors %} is-invalid{% endif %}">
-          <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
-          <div class="input-icon"><i class="fa-solid fa-lock"></i>{{ form.password }}<button type="button" class="toggle-pass" aria-label="Show password"><i class="fa-regular fa-eye"></i></button></div>
+          <label class="form-label" for="{{ form.password.id_for_label }}">{% translate "Password" %}</label>
+          <div class="input-icon"><i class="fa-solid fa-lock"></i>{{ form.password }}<button type="button" class="toggle-pass" aria-label="{% translate "Show password" %}"><i class="fa-regular fa-eye"></i></button></div>
           {% for e in form.password.errors %}<span class="invalid-feedback">{{ e }}</span>{% endfor %}
         </div>
-        <div class="flex justify-between items-center mb-2"><label class="check">{{ form.remember_me }} Remember me</label></div>
+        <div class="flex justify-between items-center mb-2"><label class="check">{{ form.remember_me }} {% translate "Remember me" %}</label></div>
         <input type="hidden" name="next" value="{{ next }}">
-        <button type="submit" class="btn btn-primary btn-block btn-lg">Log in</button>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">{% translate "Log in" %}</button>
       </form>
-      <div class="divider">Demo accounts</div>
+      <div class="divider">{% translate "Demo accounts" %}</div>
       <div class="demo-creds">
-        <div><b>Patient:</b> <code>patient@curapoint.com</code> / <code>Demo@1234</code></div>
-        <div class="mt-1"><b>Doctor:</b> <code>doctor@curapoint.com</code> / <code>Demo@1234</code></div>
+        <div><b>{% translate "Patient:" %}</b> <code>patient@curapoint.com</code> / <code>Demo@1234</code></div>
+        <div class="mt-1"><b>{% translate "Doctor:" %}</b> <code>doctor@curapoint.com</code> / <code>Demo@1234</code></div>
       </div>
     </div>
   </div>

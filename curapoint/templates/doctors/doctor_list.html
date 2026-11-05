@@ -1,42 +1,43 @@
 {% extends "base.html" %}
-{% block title %}Find a doctor{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Find a doctor" %}{% endblock %}
 {% block content %}
-<section class="page-head"><div class="container"><div class="breadcrumbs"><a href="{% url 'core:home' %}">Home</a> / Doctors</div><h1>Find a doctor</h1><p>Browse verified specialists and book an appointment that suits you.</p></div></section>
+<section class="page-head"><div class="container"><div class="breadcrumbs"><a href="{% url 'core:home' %}">{% translate "Home" %}</a> {% translate "/ Doctors" %}</div><h1>{% translate "Find a doctor" %}</h1><p>{% translate "Browse verified specialists and book an appointment that suits you." %}</p></div></section>
 <div class="container listing">
   <aside class="card filters">
     <form method="get">
-      <h3 class="mb-0">Filters</h3>
-      <h4>Search</h4><div class="input-icon"><i class="fa-solid fa-magnifying-glass"></i>{{ form.q }}</div>
-      <h4>Specialty</h4>{{ form.specialty }}
-      <h4>Location</h4><div class="input-icon"><i class="fa-solid fa-location-dot"></i>{{ form.location }}</div>
-      <h4>Rating</h4>{{ form.min_rating }}
-      <h4>Options</h4>
-      <label class="check mb-1">{{ form.video }} Video consultation</label><br>
-      <label class="check">{{ form.accepting }} Accepting new patients</label>
+      <h3 class="mb-0">{% translate "Filters" %}</h3>
+      <h4>{% translate "Search" %}</h4><div class="input-icon"><i class="fa-solid fa-magnifying-glass"></i>{{ form.q }}</div>
+      <h4>{% translate "Specialty" %}</h4>{{ form.specialty }}
+      <h4>{% translate "Location" %}</h4><div class="input-icon"><i class="fa-solid fa-location-dot"></i>{{ form.location }}</div>
+      <h4>{% translate "Rating" %}</h4>{{ form.min_rating }}
+      <h4>{% translate "Options" %}</h4>
+      <label class="check mb-1">{{ form.video }} {% translate "Video consultation" %}</label><br>
+      <label class="check">{{ form.accepting }} {% translate "Accepting new patients" %}</label>
       <input type="hidden" name="sort" value="{{ form.sort.value|default:'' }}">
-      <button class="btn btn-primary btn-block mt-3" type="submit">Apply filters</button>
-      <a href="{% url 'doctors:list' %}" class="btn btn-ghost btn-block mt-1">Reset</a>
+      <button class="btn btn-primary btn-block mt-3" type="submit">{% translate "Apply filters" %}</button>
+      <a href="{% url 'doctors:list' %}" class="btn btn-ghost btn-block mt-1">{% translate "Reset" %}</a>
     </form>
   </aside>
   <div>
     <div class="results-bar">
-      <p class="mb-0"><strong style="color:var(--ink)">{{ page_obj.paginator.count }}</strong> doctor{{ page_obj.paginator.count|pluralize }} found</p>
+      <p class="mb-0">{% blocktranslate count n=page_obj.paginator.count %}<strong style="color:var(--ink)">{{ n }}</strong> doctor found{% plural %}<strong style="color:var(--ink)">{{ n }}</strong> doctors found{% endblocktranslate %}</p>
       <form method="get" class="flex items-center gap-1">
         {% for key, val in request.GET.items %}{% if key != "sort" and key != "page" %}<input type="hidden" name="{{ key }}" value="{{ val }}">{% endif %}{% endfor %}
-        <label for="id_sort" class="text-sm text-muted">Sort</label>
+        <label for="id_sort" class="text-sm text-muted">{% translate "Sort" %}</label>
         <select name="sort" id="id_sort" class="form-select" style="width:auto" onchange="this.form.submit()">{% for v, l in form.fields.sort.choices %}<option value="{{ v }}"{% if form.sort.value == v %} selected{% endif %}>{{ l }}</option>{% endfor %}</select>
       </form>
     </div>
     <div class="grid grid-3">
       {% for doctor in doctors %}{% include "partials/doctor_card.html" %}{% empty %}
-      <div class="card empty-state" style="grid-column:1/-1"><i class="fa-solid fa-user-doctor"></i><h3>No doctors match your filters</h3><p>Try a different specialty or clear some filters.</p><a href="{% url 'doctors:list' %}" class="btn btn-soft">Clear filters</a></div>
+      <div class="card empty-state" style="grid-column:1/-1"><i class="fa-solid fa-user-doctor"></i><h3>{% translate "No doctors match your filters" %}</h3><p>{% translate "Try a different specialty or clear some filters." %}</p><a href="{% url 'doctors:list' %}" class="btn btn-soft">{% translate "Clear filters" %}</a></div>
       {% endfor %}
     </div>
     {% if page_obj.has_other_pages %}
-    <nav class="pagination" aria-label="Pagination">
-      {% if page_obj.has_previous %}<a href="?{{ querystring }}&page={{ page_obj.previous_page_number }}" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></a>{% endif %}
+    <nav class="pagination" aria-label="{% translate "Pagination" %}">
+      {% if page_obj.has_previous %}<a href="?{{ querystring }}&page={{ page_obj.previous_page_number }}" aria-label="{% translate "Previous" %}"><i class="fa-solid fa-chevron-left"></i></a>{% endif %}
       {% for n in page_obj.paginator.page_range %}{% if n == page_obj.number %}<span class="current">{{ n }}</span>{% else %}<a href="?{{ querystring }}&page={{ n }}">{{ n }}</a>{% endif %}{% endfor %}
-      {% if page_obj.has_next %}<a href="?{{ querystring }}&page={{ page_obj.next_page_number }}" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></a>{% endif %}
+      {% if page_obj.has_next %}<a href="?{{ querystring }}&page={{ page_obj.next_page_number }}" aria-label="{% translate "Next" %}"><i class="fa-solid fa-chevron-right"></i></a>{% endif %}
     </nav>
     {% endif %}
   </div>

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
@@ -28,15 +29,15 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     class Role(models.TextChoices):
-        PATIENT = "patient", "Patient"
-        DOCTOR = "doctor", "Doctor"
-        ADMIN = "admin", "Administrator"
+        PATIENT = "patient", _("Patient")
+        DOCTOR = "doctor", _("Doctor")
+        ADMIN = "admin", _("Administrator")
 
     class Gender(models.TextChoices):
-        FEMALE = "female", "Female"
-        MALE = "male", "Male"
-        OTHER = "other", "Other"
-        UNSPECIFIED = "", "Prefer not to say"
+        FEMALE = "female", _("Female")
+        MALE = "male", _("Male")
+        OTHER = "other", _("Other")
+        UNSPECIFIED = "", _("Prefer not to say")
 
     username = None
     email = models.EmailField("email address", unique=True)

@@ -1,0 +1,1986 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-05 13:11+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: accounts/forms.py:27 accounts/forms.py:53
+msgid "Email address"
+msgstr "آدرس ایمیل"
+
+#: accounts/forms.py:28 accounts/forms.py:44 templates/accounts/login.html:23
+msgid "Password"
+msgstr "رمز عبور"
+
+#: accounts/forms.py:29 templates/accounts/login.html:27
+msgid "Remember me"
+msgstr "مرا به خاطر بسپار"
+
+#: accounts/forms.py:40
+msgid "I'm a patient"
+msgstr "بیمار هستم"
+
+#: accounts/forms.py:40
+msgid "I'm a doctor"
+msgstr "پزشک هستم"
+
+#: accounts/forms.py:44
+msgid "At least 8 characters"
+msgstr "حداقل ۸ کاراکتر"
+
+#: accounts/forms.py:45
+msgid "Confirm password"
+msgstr "تکرار رمز عبور"
+
+#: accounts/forms.py:45
+msgid "Repeat password"
+msgstr "رمز عبور را تکرار کنید"
+
+#: accounts/forms.py:46 accounts/forms.py:160 templates/core/home.html:14
+#: templates/doctors/doctor_list.html:11
+msgid "Specialty"
+msgstr "تخصص"
+
+#: accounts/forms.py:46
+msgid "Select your specialty"
+msgstr "تخصص خود را انتخاب کنید"
+
+#: accounts/forms.py:47 accounts/forms.py:161
+msgid "License number"
+msgstr "شماره نظام پزشکی"
+
+#: accounts/forms.py:47
+msgid "Medical license number"
+msgstr "شماره نظام پزشکی"
+
+#: accounts/forms.py:48
+msgid "I agree to the Terms of Service and Privacy Policy"
+msgstr "با شرایط استفاده و سیاست حریم خصوصی موافقم"
+
+#: accounts/forms.py:53 accounts/forms.py:112
+#: templates/appointments/appointment_detail.html:35
+#: templates/dashboard/doctor_patient_detail.html:26
+msgid "Phone"
+msgstr "تلفن"
+
+#: accounts/forms.py:55
+msgid "Jane"
+msgstr "سارا"
+
+#: accounts/forms.py:56
+msgid "Doe"
+msgstr "محمدی"
+
+#: accounts/forms.py:69
+msgid "An account with this email already exists."
+msgstr "حسابی با این ایمیل از قبل وجود دارد."
+
+#: accounts/forms.py:76
+msgid "The two passwords don't match."
+msgstr "دو رمز عبور یکسان نیستند."
+
+#: accounts/forms.py:85
+msgid "Please choose your specialty."
+msgstr "لطفاً تخصص خود را انتخاب کنید."
+
+#: accounts/forms.py:87
+msgid "A license number is required for doctors."
+msgstr "وارد کردن شماره نظام پزشکی برای پزشکان الزامی است."
+
+#: accounts/forms.py:112
+msgid "Date of birth"
+msgstr "تاریخ تولد"
+
+#: accounts/forms.py:112 templates/appointments/appointment_detail.html:35
+#: templates/dashboard/doctor_patient_detail.html:26
+msgid "Gender"
+msgstr "جنسیت"
+
+#: accounts/forms.py:112
+msgid "Address"
+msgstr "آدرس"
+
+#: accounts/forms.py:112
+msgid "Profile photo"
+msgstr "عکس پروفایل"
+
+#: accounts/forms.py:120
+msgid "Date of birth can't be in the future."
+msgstr "تاریخ تولد نمی‌تواند در آینده باشد."
+
+#: accounts/forms.py:129 templates/dashboard/doctor_patient_detail.html:26
+#: templates/dashboard/patient.html:36
+msgid "Blood type"
+msgstr "گروه خونی"
+
+#: accounts/forms.py:129
+msgid "Height (cm)"
+msgstr "قد (سانتی‌متر)"
+
+#: accounts/forms.py:129
+msgid "Weight (kg)"
+msgstr "وزن (کیلوگرم)"
+
+#: accounts/forms.py:129 templates/dashboard/doctor_patient_detail.html:26
+#: templates/dashboard/patient.html:40
+msgid "Allergies"
+msgstr "حساسیت‌ها"
+
+#: accounts/forms.py:130
+msgid "Chronic conditions"
+msgstr "بیماری‌های مزمن"
+
+#: accounts/forms.py:130
+msgid "Emergency contact name"
+msgstr "نام تماس اضطراری"
+
+#: accounts/forms.py:131
+msgid "Emergency contact phone"
+msgstr "تلفن تماس اضطراری"
+
+#: accounts/forms.py:141
+msgid "Enter a height between 40 and 260 cm."
+msgstr "قدی بین ۴۰ تا ۲۶۰ سانتی‌متر وارد کنید."
+
+#: accounts/forms.py:147
+msgid "Enter a weight between 2 and 400 kg."
+msgstr "وزنی بین ۲ تا ۴۰۰ کیلوگرم وارد کنید."
+
+#: accounts/forms.py:160
+msgid "Professional title"
+msgstr "عنوان تخصصی"
+
+#: accounts/forms.py:160
+msgid "Biography"
+msgstr "بیوگرافی"
+
+#: accounts/forms.py:160 templates/doctors/doctor_detail.html:28
+msgid "Education"
+msgstr "تحصیلات"
+
+#: accounts/forms.py:161
+msgid "Languages"
+msgstr "زبان‌ها"
+
+#: accounts/forms.py:161
+msgid "Years of experience"
+msgstr "سال‌های تجربه"
+
+#: accounts/forms.py:162 templates/appointments/book.html:38
+msgid "Consultation fee"
+msgstr "هزینه ویزیت"
+
+#: accounts/forms.py:162
+msgid "Clinic name"
+msgstr "نام مطب / کلینیک"
+
+#: accounts/forms.py:162 templates/appointments/appointment_detail.html:38
+#: templates/appointments/book.html:37 templates/doctors/doctor_list.html:12
+msgid "Location"
+msgstr "موقعیت"
+
+#: accounts/forms.py:162
+msgid "Photo"
+msgstr "عکس"
+
+#: accounts/forms.py:163
+msgid "Offers video consultations"
+msgstr "ارائه مشاوره تصویری"
+
+#: accounts/forms.py:163 doctors/forms.py:23
+#: templates/doctors/doctor_list.html:16
+msgid "Accepting new patients"
+msgstr "پذیرش بیمار جدید"
+
+#: accounts/forms.py:165
+msgid "e.g. Senior Cardiologist"
+msgstr "مثلاً متخصص ارشد قلب"
+
+#: accounts/forms.py:165
+msgid "One entry per line"
+msgstr "هر مورد در یک خط"
+
+#: accounts/forms.py:165
+msgid "Comma-separated"
+msgstr "با کاما جدا کنید"
+
+#: accounts/models.py:32 templates/appointments/appointment_list.html:16
+#: templates/dashboard/doctor_patients.html:8
+msgid "Patient"
+msgstr "بیمار"
+
+#: accounts/models.py:33 templates/appointments/appointment_list.html:16
+msgid "Doctor"
+msgstr "پزشک"
+
+#: accounts/models.py:34
+msgid "Administrator"
+msgstr "مدیر"
+
+#: accounts/models.py:37
+msgid "Female"
+msgstr "زن"
+
+#: accounts/models.py:38
+msgid "Male"
+msgstr "مرد"
+
+#: accounts/models.py:39
+msgid "Other"
+msgstr "سایر"
+
+#: accounts/models.py:40
+msgid "Prefer not to say"
+msgstr "ترجیح می‌دهم نگویم"
+
+#: accounts/views.py:21
+#, python-format
+msgid "Welcome back, %(name)s!"
+msgstr "%(name)s، خوش آمدید!"
+
+#: accounts/views.py:21 templates/dashboard/patient.html:6
+msgid "there"
+msgstr "دوست عزیز"
+
+#: accounts/views.py:34
+msgid "Your CuraPoint account has been created."
+msgstr "حساب کاربری شما در CuraPoint ساخته شد."
+
+#: accounts/views.py:36
+msgid ""
+"Complete your profile and set your availability so patients can book you."
+msgstr ""
+"پروفایل خود را کامل کنید و ساعات کاری‌تان را تنظیم کنید تا بیماران بتوانند "
+"نوبت بگیرند."
+
+#: accounts/views.py:59
+msgid "Profile updated."
+msgstr "پروفایل به‌روزرسانی شد."
+
+#: accounts/views.py:61 records/views.py:32
+msgid "Please correct the errors below."
+msgstr "لطفاً خطاهای زیر را برطرف کنید."
+
+#: appointments/forms.py:15
+msgid "Please pick an available time slot."
+msgstr "لطفاً یک زمان خالی انتخاب کنید."
+
+#: appointments/forms.py:20
+msgid "Date"
+msgstr "تاریخ"
+
+#: appointments/forms.py:20 templates/appointments/book.html:22
+msgid "Visit type"
+msgstr "نوع ویزیت"
+
+#: appointments/forms.py:20 templates/appointments/appointment_detail.html:17
+msgid "Reason for visit"
+msgstr "دلیل مراجعه"
+
+#: appointments/forms.py:20
+msgid "Notes for the doctor"
+msgstr "توضیحات برای پزشک"
+
+#: appointments/forms.py:25
+msgid "e.g. Annual check-up, chest pain, follow-up"
+msgstr "مثلاً چکاپ سالانه، درد قفسه سینه، پیگیری"
+
+#: appointments/forms.py:26
+msgid "Symptoms, medications or anything the doctor should know (optional)"
+msgstr "علائم، داروها یا هر چیزی که پزشک باید بداند (اختیاری)"
+
+#: appointments/forms.py:41
+msgid "You can't book an appointment in the past."
+msgstr "نمی‌توانید برای زمان گذشته نوبت بگیرید."
+
+#: appointments/forms.py:43
+#, python-format
+msgid "Appointments can be booked up to %(days)s days ahead."
+msgstr "نوبت را حداکثر تا %(days)s روز آینده می‌توان رزرو کرد."
+
+#: appointments/forms.py:45
+#, python-format
+msgid "%(doctor)s doesn't see patients on this day of the week."
+msgstr "%(doctor)s در این روز هفته بیمار نمی‌پذیرد."
+
+#: appointments/forms.py:51
+msgid "Please describe the reason for your visit."
+msgstr "لطفاً دلیل مراجعه خود را بنویسید."
+
+#: appointments/forms.py:58
+#, python-format
+msgid "%(doctor)s is not accepting new appointments right now."
+msgstr "%(doctor)s در حال حاضر نوبت جدید نمی‌پذیرد."
+
+#: appointments/forms.py:61
+msgid "That time slot is no longer available. Please choose another."
+msgstr "این زمان دیگر خالی نیست. لطفاً زمان دیگری انتخاب کنید."
+
+#: appointments/forms.py:63
+msgid "You already have another appointment at this time."
+msgstr "شما در این زمان نوبت دیگری دارید."
+
+#: appointments/forms.py:84 templates/appointments/appointment_list.html:16
+msgid "Status"
+msgstr "وضعیت"
+
+#: appointments/forms.py:84
+msgid "Clinical notes"
+msgstr "یادداشت‌های بالینی"
+
+#: appointments/forms.py:86
+msgid "Clinical notes (visible to you only)"
+msgstr "یادداشت‌های بالینی (فقط برای شما قابل مشاهده است)"
+
+#: appointments/forms.py:98
+#, python-format
+msgid "Can't change a %(current)s appointment to %(new)s."
+msgstr "نمی‌توان وضعیت نوبت را از «%(current)s» به «%(new)s» تغییر داد."
+
+#: appointments/models.py:22
+msgid "Pending"
+msgstr "در انتظار"
+
+#: appointments/models.py:23
+msgid "Confirmed"
+msgstr "تأییدشده"
+
+#: appointments/models.py:24 templates/dashboard/patient.html:11
+msgid "Completed"
+msgstr "انجام‌شده"
+
+#: appointments/models.py:25
+msgid "Cancelled"
+msgstr "لغوشده"
+
+#: appointments/models.py:26
+msgid "No-show"
+msgstr "عدم حضور"
+
+#: appointments/models.py:29 templates/appointments/appointment_detail.html:12
+msgid "In-person visit"
+msgstr "ویزیت حضوری"
+
+#: appointments/models.py:30 doctors/forms.py:22
+#: templates/appointments/appointment_detail.html:12
+#: templates/doctors/doctor_list.html:15
+msgid "Video consultation"
+msgstr "مشاوره تصویری"
+
+#: appointments/views.py:41
+#, python-format
+msgid "Appointment requested with %(doctor)s on %(date)s at %(time)s."
+msgstr "درخواست نوبت با %(doctor)s برای %(date)s ساعت %(time)s ثبت شد."
+
+#: appointments/views.py:81
+msgid "This appointment can no longer be cancelled."
+msgstr "این نوبت دیگر قابل لغو نیست."
+
+#: appointments/views.py:85
+msgid "Appointment cancelled."
+msgstr "نوبت لغو شد."
+
+#: appointments/views.py:96
+#, python-format
+msgid "Appointment marked as %(status)s."
+msgstr "وضعیت نوبت به «%(status)s» تغییر کرد."
+
+#: appointments/views.py:114
+#, python-format
+msgid "Appointment with %(patient)s: %(status)s."
+msgstr "نوبت %(patient)s: %(status)s."
+
+#: appointments/views.py:116
+msgid "That action isn't allowed for this appointment."
+msgstr "این عملیات برای این نوبت مجاز نیست."
+
+#: core/context_processors.py:8
+msgid "Your health, one point of care"
+msgstr "سلامت شما، در یک نقطه"
+
+#: core/context_processors.py:10
+msgid "No free slots on this day. Please choose another date."
+msgstr "در این روز زمان خالی وجود ندارد. لطفاً تاریخ دیگری انتخاب کنید."
+
+#: core/context_processors.py:11
+msgid "at"
+msgstr "ساعت"
+
+#: core/context_processors.py:12 templates/appointments/book.html:36
+msgid "No time selected"
+msgstr "زمانی انتخاب نشده"
+
+#: core/context_processors.py:13
+msgid "Select a date to see available times."
+msgstr "برای دیدن زمان‌های خالی یک تاریخ انتخاب کنید."
+
+#: core/context_processors.py:14
+msgid "Loading slots…"
+msgstr "در حال دریافت زمان‌ها…"
+
+#: core/context_processors.py:15
+msgid "Could not load slots. Please retry."
+msgstr "دریافت زمان‌ها ناموفق بود. دوباره تلاش کنید."
+
+#: core/decorators.py:17
+msgid "You don't have access to that page."
+msgstr "شما به این صفحه دسترسی ندارید."
+
+#: core/decorators.py:34
+msgid "Your doctor profile is not set up yet."
+msgstr "پروفایل پزشکی شما هنوز تنظیم نشده است."
+
+#: core/management/commands/seed_data.py:18
+msgid "Cardiology"
+msgstr "قلب و عروق"
+
+#: core/management/commands/seed_data.py:19
+msgid "Dermatology"
+msgstr "پوست و مو"
+
+#: core/management/commands/seed_data.py:20
+msgid "Pediatrics"
+msgstr "کودکان"
+
+#: core/management/commands/seed_data.py:21
+msgid "Neurology"
+msgstr "مغز و اعصاب"
+
+#: core/management/commands/seed_data.py:22
+msgid "Orthopedics"
+msgstr "ارتوپدی"
+
+#: core/management/commands/seed_data.py:23
+msgid "Dentistry"
+msgstr "دندان‌پزشکی"
+
+#: core/management/commands/seed_data.py:24
+msgid "Ophthalmology"
+msgstr "چشم‌پزشکی"
+
+#: core/management/commands/seed_data.py:25
+msgid "General Practice"
+msgstr "پزشک عمومی"
+
+#: core/management/commands/seed_data.py:26
+msgid "Psychiatry"
+msgstr "روان‌پزشکی"
+
+#: core/management/commands/seed_data.py:27
+msgid "Gynecology"
+msgstr "زنان و زایمان"
+
+#: dashboard/views.py:129
+msgid "Medical record added."
+msgstr "پرونده پزشکی اضافه شد."
+
+#: dashboard/views.py:131
+msgid "Please correct the errors in the record form."
+msgstr "لطفاً خطاهای فرم پرونده را برطرف کنید."
+
+#: doctors/forms.py:13
+msgid "Recommended"
+msgstr "پیشنهادی"
+
+#: doctors/forms.py:14
+msgid "Highest rated"
+msgstr "بیشترین امتیاز"
+
+#: doctors/forms.py:15
+msgid "Most experienced"
+msgstr "باتجربه‌ترین"
+
+#: doctors/forms.py:16
+msgid "Fee: low to high"
+msgstr "هزینه: کم به زیاد"
+
+#: doctors/forms.py:17
+msgid "Fee: high to low"
+msgstr "هزینه: زیاد به کم"
+
+#: doctors/forms.py:19
+msgid "Search doctors, specialties, clinics…"
+msgstr "جستجوی پزشک، تخصص، کلینیک…"
+
+#: doctors/forms.py:20 templates/core/home.html:15
+msgid "All specialties"
+msgstr "همه تخصص‌ها"
+
+#: doctors/forms.py:21
+msgid "City or area"
+msgstr "شهر یا منطقه"
+
+#: doctors/forms.py:26
+msgid "Any rating"
+msgstr "هر امتیازی"
+
+#: doctors/forms.py:33
+#, python-format
+msgid "%(n)d star"
+msgid_plural "%(n)d stars"
+msgstr[0] "%(n)d ستاره"
+msgstr[1] "%(n)d ستاره"
+
+#: doctors/forms.py:38
+msgid "Comment"
+msgstr "نظر"
+
+#: doctors/forms.py:39
+msgid "Share your experience (optional)"
+msgstr "تجربه خود را بنویسید (اختیاری)"
+
+#: doctors/forms.py:46
+msgid "Day"
+msgstr "روز"
+
+#: doctors/forms.py:46
+msgid "Start time"
+msgstr "ساعت شروع"
+
+#: doctors/forms.py:46
+msgid "End time"
+msgstr "ساعت پایان"
+
+#: doctors/forms.py:46
+msgid "Slot (minutes)"
+msgstr "مدت هر نوبت (دقیقه)"
+
+#: doctors/forms.py:46 templates/doctors/availability.html:18
+#: templates/doctors/availability.html:31
+msgid "Active"
+msgstr "فعال"
+
+#: doctors/forms.py:56
+msgid "End time must be after start time."
+msgstr "ساعت پایان باید بعد از ساعت شروع باشد."
+
+#: doctors/forms.py:73
+#, python-format
+msgid "Overlapping hours on %(day)s. Please merge or adjust them."
+msgstr "ساعات %(day)s با هم تداخل دارند. لطفاً آن‌ها را ادغام یا اصلاح کنید."
+
+#: doctors/models.py:69
+#, python-format
+#| msgid "Hello, %(name)s"
+msgid "Dr. %(name)s"
+msgstr "دکتر %(name)s"
+
+#: doctors/models.py:148
+msgid "Monday"
+msgstr "دوشنبه"
+
+#: doctors/models.py:149
+msgid "Tuesday"
+msgstr "سه‌شنبه"
+
+#: doctors/models.py:150
+msgid "Wednesday"
+msgstr "چهارشنبه"
+
+#: doctors/models.py:151
+msgid "Thursday"
+msgstr "پنجشنبه"
+
+#: doctors/models.py:152
+msgid "Friday"
+msgstr "جمعه"
+
+#: doctors/models.py:153
+msgid "Saturday"
+msgstr "شنبه"
+
+#: doctors/models.py:154
+msgid "Sunday"
+msgstr "یکشنبه"
+
+#: doctors/views.py:87
+msgid "Invalid date. Use YYYY-MM-DD."
+msgstr "تاریخ نامعتبر است. از قالب YYYY-MM-DD استفاده کنید."
+
+#: doctors/views.py:100
+msgid "You can review a doctor after a completed appointment."
+msgstr "پس از انجام ویزیت می‌توانید برای پزشک نظر ثبت کنید."
+
+#: doctors/views.py:108
+msgid "Thanks for your feedback!"
+msgstr "از نظر شما متشکریم!"
+
+#: doctors/views.py:110
+msgid "Please choose a rating between 1 and 5."
+msgstr "لطفاً امتیازی بین ۱ تا ۵ انتخاب کنید."
+
+#: doctors/views.py:122
+msgid "Availability updated."
+msgstr "ساعات کاری به‌روزرسانی شد."
+
+#: doctors/views.py:124
+msgid "Please fix the errors below."
+msgstr "لطفاً خطاهای زیر را برطرف کنید."
+
+#: records/forms.py:23
+msgid "Record type"
+msgstr "نوع پرونده"
+
+#: records/forms.py:23
+msgid "Title"
+msgstr "عنوان"
+
+#: records/forms.py:23
+msgid "Description"
+msgstr "توضیحات"
+
+#: records/forms.py:23
+msgid "Record date"
+msgstr "تاریخ پرونده"
+
+#: records/forms.py:23 templates/records/record_list.html:14
+msgid "Attachment"
+msgstr "پیوست"
+
+#: records/forms.py:32
+msgid "Record date can't be in the future."
+msgstr "تاریخ پرونده نمی‌تواند در آینده باشد."
+
+#: records/forms.py:38
+msgid "Attachments must be 10 MB or smaller."
+msgstr "حجم پیوست باید حداکثر ۱۰ مگابایت باشد."
+
+#: records/forms.py:47 templates/records/metrics.html:9
+msgid "Metric"
+msgstr "شاخص"
+
+#: records/forms.py:47 templates/records/metrics.html:9
+msgid "Value"
+msgstr "مقدار"
+
+#: records/forms.py:47
+msgid "Diastolic (BP only)"
+msgstr "دیاستولیک (فقط فشار خون)"
+
+#: records/forms.py:47
+msgid "Recorded at"
+msgstr "زمان ثبت"
+
+#: records/forms.py:47 templates/records/metrics.html:9
+msgid "Note"
+msgstr "یادداشت"
+
+#: records/forms.py:58
+msgid "Readings can't be recorded in the future."
+msgstr "زمان ثبت نمی‌تواند در آینده باشد."
+
+#: records/forms.py:67
+#, python-format
+msgid "Value should be between %(lo)s and %(hi)s."
+msgstr "مقدار باید بین %(lo)s و %(hi)s باشد."
+
+#: records/forms.py:70
+msgid "Enter the diastolic value for blood pressure."
+msgstr "مقدار دیاستولیک فشار خون را وارد کنید."
+
+#: records/forms.py:72
+msgid "Diastolic must be lower than systolic."
+msgstr "دیاستولیک باید کمتر از سیستولیک باشد."
+
+#: records/models.py:8
+msgid "Diagnosis"
+msgstr "تشخیص"
+
+#: records/models.py:9
+msgid "Prescription"
+msgstr "نسخه"
+
+#: records/models.py:10
+msgid "Lab result"
+msgstr "نتیجه آزمایش"
+
+#: records/models.py:11
+msgid "Vaccination"
+msgstr "واکسیناسیون"
+
+#: records/models.py:12
+msgid "Imaging"
+msgstr "تصویربرداری"
+
+#: records/models.py:13
+msgid "Clinical note"
+msgstr "یادداشت بالینی"
+
+#: records/models.py:46
+msgid "Heart rate"
+msgstr "ضربان قلب"
+
+#: records/models.py:47
+msgid "Blood pressure"
+msgstr "فشار خون"
+
+#: records/models.py:48
+msgid "Blood glucose"
+msgstr "قند خون"
+
+#: records/models.py:49 templates/dashboard/patient.html:38
+msgid "Weight"
+msgstr "وزن"
+
+#: records/models.py:50
+msgid "Body temperature"
+msgstr "دمای بدن"
+
+#: records/models.py:51
+msgid "Oxygen saturation"
+msgstr "اکسیژن خون"
+
+#: records/views.py:30
+#, python-format
+msgid "%(metric)s reading saved."
+msgstr "مقدار %(metric)s ثبت شد."
+
+#: templates/accounts/login.html:3 templates/accounts/login.html:16
+#: templates/accounts/login.html:29 templates/accounts/signup.html:16
+#: templates/partials/header.html:40
+msgid "Log in"
+msgstr "ورود"
+
+#: templates/accounts/login.html:8
+msgid "Welcome back to CuraPoint"
+msgstr "به CuraPoint خوش برگشتید"
+
+#: templates/accounts/login.html:9
+msgid ""
+"Sign in to manage appointments, view records and connect with your doctors."
+msgstr ""
+"وارد شوید تا نوبت‌ها را مدیریت کنید، پرونده‌ها را ببینید و با پزشکانتان در "
+"ارتباط باشید."
+
+#: templates/accounts/login.html:10
+msgid "Instant booking"
+msgstr "رزرو فوری"
+
+#: templates/accounts/login.html:10
+msgid "Real-time availability from top doctors."
+msgstr "زمان‌های خالی لحظه‌ای از بهترین پزشکان."
+
+#: templates/accounts/login.html:11
+msgid "Secure records"
+msgstr "پرونده‌های امن"
+
+#: templates/accounts/login.html:11
+msgid "Your health history, protected and in one place."
+msgstr "سوابق سلامت شما، امن و در یک جا."
+
+#: templates/accounts/login.html:12 templates/doctors/doctor_detail.html:29
+msgid "Video consultations"
+msgstr "مشاوره تصویری"
+
+#: templates/accounts/login.html:12
+msgid "See a doctor from the comfort of home."
+msgstr "از خانه با پزشک مشورت کنید."
+
+#: templates/accounts/login.html:17
+msgid "New to CuraPoint?"
+msgstr "در CuraPoint تازه‌وارد هستید؟"
+
+#: templates/accounts/login.html:17
+msgid "Create an account"
+msgstr "ساخت حساب کاربری"
+
+#: templates/accounts/login.html:24
+msgid "Show password"
+msgstr "نمایش رمز عبور"
+
+#: templates/accounts/login.html:31
+msgid "Demo accounts"
+msgstr "حساب‌های آزمایشی"
+
+#: templates/accounts/login.html:33
+msgid "Patient:"
+msgstr "بیمار:"
+
+#: templates/accounts/login.html:34
+msgid "Doctor:"
+msgstr "پزشک:"
+
+#: templates/accounts/profile.html:3 templates/accounts/profile.html:5
+#: templates/partials/header.html:33
+msgid "Profile settings"
+msgstr "تنظیمات پروفایل"
+
+#: templates/accounts/profile.html:5
+msgid "Keep your personal and professional details up to date."
+msgstr "اطلاعات شخصی و حرفه‌ای خود را به‌روز نگه دارید."
+
+#: templates/accounts/profile.html:5
+msgid "Keep your personal and medical details up to date."
+msgstr "اطلاعات شخصی و پزشکی خود را به‌روز نگه دارید."
+
+#: templates/accounts/profile.html:11
+msgid "Personal information"
+msgstr "اطلاعات شخصی"
+
+#: templates/accounts/profile.html:21
+msgid "Professional profile"
+msgstr "پروفایل حرفه‌ای"
+
+#: templates/accounts/profile.html:21
+msgid "Medical information"
+msgstr "اطلاعات پزشکی"
+
+#: templates/accounts/profile.html:36
+msgid "Save changes"
+msgstr "ذخیره تغییرات"
+
+#: templates/accounts/profile.html:37
+msgid ""
+"Your information is stored securely and only shared with your care team."
+msgstr ""
+"اطلاعات شما به‌صورت امن ذخیره می‌شود و فقط در اختیار تیم درمانی‌تان قرار "
+"می‌گیرد."
+
+#: templates/accounts/profile.html:38
+msgid "Save profile"
+msgstr "ذخیره پروفایل"
+
+#: templates/accounts/profile.html:39
+msgid "Manage availability"
+msgstr "مدیریت ساعات کاری"
+
+#: templates/accounts/signup.html:3 templates/accounts/signup.html:46
+#: templates/partials/footer.html:9
+msgid "Create account"
+msgstr "ساخت حساب"
+
+#: templates/accounts/signup.html:8
+msgid "Join CuraPoint today"
+msgstr "همین امروز به CuraPoint بپیوندید"
+
+#: templates/accounts/signup.html:9
+msgid ""
+"One account for booking visits, tracking your health and talking to your "
+"care team."
+msgstr "یک حساب برای رزرو ویزیت، پیگیری سلامت و ارتباط با تیم درمانی."
+
+#: templates/accounts/signup.html:10
+msgid "For patients"
+msgstr "برای بیماران"
+
+#: templates/accounts/signup.html:10
+msgid "Find specialists and book in seconds."
+msgstr "متخصص پیدا کنید و در چند ثانیه نوبت بگیرید."
+
+#: templates/accounts/signup.html:11
+msgid "For doctors"
+msgstr "برای پزشکان"
+
+#: templates/accounts/signup.html:11
+msgid "Manage your schedule, patients and records."
+msgstr "برنامه، بیماران و پرونده‌ها را مدیریت کنید."
+
+#: templates/accounts/signup.html:15
+msgid "Create your account"
+msgstr "حساب کاربری خود را بسازید"
+
+#: templates/accounts/signup.html:16
+msgid "Already have an account?"
+msgstr "حساب کاربری دارید؟"
+
+#: templates/accounts/signup.html:43
+msgid "I agree to the <a href=\"#\">Terms</a> and <a href=\"#\">Privacy Policy</a>"
+msgstr ""
+"با <a href=\"#\">شرایط استفاده</a> و <a href=\"#\">سیاست حریم خصوصی</a> "
+"موافقم"
+
+#: templates/app_base.html:7
+msgid "Dashboard navigation"
+msgstr "منوی داشبورد"
+
+#: templates/app_base.html:9
+msgid "Practice"
+msgstr "مطب"
+
+#: templates/app_base.html:10 templates/app_base.html:19
+msgid "Overview"
+msgstr "نمای کلی"
+
+#: templates/app_base.html:11 templates/app_base.html:20
+#: templates/appointments/appointment_detail.html:6
+#: templates/appointments/appointment_list.html:3
+#: templates/appointments/appointment_list.html:6
+#: templates/partials/header.html:32
+msgid "Appointments"
+msgstr "نوبت‌ها"
+
+#: templates/app_base.html:12 templates/dashboard/doctor_patient_detail.html:5
+#: templates/dashboard/doctor_patients.html:3
+#: templates/dashboard/doctor_patients.html:5
+msgid "My patients"
+msgstr "بیماران من"
+
+#: templates/app_base.html:13 templates/dashboard/doctor.html:8
+#: templates/doctors/availability.html:3 templates/doctors/availability.html:5
+msgid "Availability"
+msgstr "ساعات کاری"
+
+#: templates/app_base.html:14 templates/app_base.html:24
+msgid "Account"
+msgstr "حساب کاربری"
+
+#: templates/app_base.html:15
+msgid "Public profile"
+msgstr "پروفایل عمومی"
+
+#: templates/app_base.html:16 templates/app_base.html:25
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: templates/app_base.html:18
+msgid "My health"
+msgstr "سلامت من"
+
+#: templates/app_base.html:21
+#: templates/dashboard/doctor_patient_detail.html:10
+#: templates/records/record_list.html:3 templates/records/record_list.html:5
+msgid "Medical records"
+msgstr "پرونده‌های پزشکی"
+
+#: templates/app_base.html:22 templates/records/metrics.html:3
+#: templates/records/metrics.html:5
+msgid "Health metrics"
+msgstr "شاخص‌های سلامت"
+
+#: templates/app_base.html:23 templates/appointments/appointment_list.html:33
+#: templates/core/about.html:17 templates/dashboard/patient.html:28
+#: templates/doctors/doctor_list.html:3 templates/doctors/doctor_list.html:5
+#: templates/partials/footer.html:9
+msgid "Find a doctor"
+msgstr "پیدا کردن پزشک"
+
+#: templates/app_base.html:26
+msgid "Need help now?"
+msgstr "همین الان کمک می‌خواهید؟"
+
+#: templates/app_base.html:26
+msgid "Call our 24/7 care line"
+msgstr "با خط پشتیبانی شبانه‌روزی تماس بگیرید"
+
+#: templates/appointments/appointment_detail.html:3
+#: templates/appointments/appointment_detail.html:6
+msgid "Appointment details"
+msgstr "جزئیات نوبت"
+
+#: templates/appointments/appointment_detail.html:18
+msgid "Patient notes"
+msgstr "توضیحات بیمار"
+
+#: templates/appointments/appointment_detail.html:23
+msgid "Manage appointment"
+msgstr "مدیریت نوبت"
+
+#: templates/appointments/appointment_detail.html:26
+msgid "Save"
+msgstr "ذخیره"
+
+#: templates/appointments/appointment_detail.html:26
+#: templates/dashboard/doctor_patient_detail.html:5
+msgid "Patient chart"
+msgstr "پرونده بیمار"
+
+#: templates/appointments/appointment_detail.html:29
+msgid "Linked records"
+msgstr "پرونده‌های مرتبط"
+
+#: templates/appointments/appointment_detail.html:35
+#: templates/dashboard/doctor_patient_detail.html:26
+#: templates/dashboard/patient.html:35
+msgid "Age"
+msgstr "سن"
+
+#: templates/appointments/appointment_detail.html:38
+msgid "Clinic"
+msgstr "کلینیک"
+
+#: templates/appointments/appointment_detail.html:39
+msgid "View doctor profile"
+msgstr "مشاهده پروفایل پزشک"
+
+#: templates/appointments/appointment_detail.html:43
+msgid "Cancel this appointment?"
+msgstr "این نوبت لغو شود؟"
+
+#: templates/appointments/appointment_detail.html:44
+msgid "Need to cancel?"
+msgstr "می‌خواهید لغو کنید؟"
+
+#: templates/appointments/appointment_detail.html:44
+msgid "The time slot will be released for other patients."
+msgstr "این زمان برای بیماران دیگر آزاد می‌شود."
+
+#: templates/appointments/appointment_detail.html:45
+msgid "Cancel appointment"
+msgstr "لغو نوبت"
+
+#: templates/appointments/appointment_detail.html:48
+#, python-format
+msgid "Requested %(d)s"
+msgstr "ثبت درخواست: %(d)s"
+
+#: templates/appointments/appointment_detail.html:48
+#, python-format
+msgid "Last updated %(t)s ago"
+msgstr "آخرین به‌روزرسانی: %(t)s پیش"
+
+#: templates/appointments/appointment_list.html:6
+msgid "Manage visit requests and your schedule."
+msgstr "درخواست‌های ویزیت و برنامه خود را مدیریت کنید."
+
+#: templates/appointments/appointment_list.html:6
+msgid "Your upcoming and past visits."
+msgstr "ویزیت‌های پیش رو و گذشته شما."
+
+#: templates/appointments/appointment_list.html:7
+msgid "New appointment"
+msgstr "نوبت جدید"
+
+#: templates/appointments/appointment_list.html:10
+msgid "Upcoming"
+msgstr "پیش رو"
+
+#: templates/appointments/appointment_list.html:10
+msgid "Past"
+msgstr "گذشته"
+
+#: templates/appointments/appointment_list.html:10
+#: templates/records/record_list.html:6
+msgid "All"
+msgstr "همه"
+
+#: templates/appointments/appointment_list.html:11
+msgid "Any status"
+msgstr "همه وضعیت‌ها"
+
+#: templates/appointments/appointment_list.html:16
+msgid "Date & time"
+msgstr "تاریخ و ساعت"
+
+#: templates/appointments/appointment_list.html:16
+msgid "Type"
+msgstr "نوع"
+
+#: templates/appointments/appointment_list.html:16
+msgid "Reason"
+msgstr "دلیل"
+
+#: templates/appointments/appointment_list.html:22
+#: templates/dashboard/patient.html:21 templates/partials/appt_row.html:6
+msgid "Video"
+msgstr "تصویری"
+
+#: templates/appointments/appointment_list.html:22
+#: templates/dashboard/patient.html:21 templates/partials/appt_row.html:6
+msgid "In-person"
+msgstr "حضوری"
+
+#: templates/appointments/appointment_list.html:27
+msgid "Confirm"
+msgstr "تأیید"
+
+#: templates/appointments/appointment_list.html:29
+msgid "View"
+msgstr "مشاهده"
+
+#: templates/appointments/appointment_list.html:33
+msgid "No appointments here"
+msgstr "نوبتی وجود ندارد"
+
+#: templates/appointments/book.html:3
+#, python-format
+msgid "Book %(doctor)s"
+msgstr "رزرو نوبت %(doctor)s"
+
+#: templates/appointments/book.html:5 templates/core/about.html:20
+#: templates/doctors/doctor_detail.html:7 templates/partials/footer.html:10
+msgid "Doctors"
+msgstr "پزشکان"
+
+#: templates/appointments/book.html:5
+msgid "/ Book"
+msgstr "/ رزرو"
+
+#: templates/appointments/book.html:5 templates/doctors/doctor_detail.html:49
+msgid "Book an appointment"
+msgstr "رزرو نوبت"
+
+#: templates/appointments/book.html:12
+msgid "Choose a date"
+msgstr "انتخاب تاریخ"
+
+#: templates/appointments/book.html:14
+msgid "Pick a time"
+msgstr "انتخاب ساعت"
+
+#: templates/appointments/book.html:20
+msgid "Visit details"
+msgstr "جزئیات ویزیت"
+
+#: templates/appointments/book.html:36
+msgid "Selected"
+msgstr "انتخاب‌شده"
+
+#: templates/appointments/book.html:40
+msgid "Confirm booking"
+msgstr "تأیید رزرو"
+
+#: templates/appointments/book.html:41
+msgid ""
+"The doctor will confirm your request. You can cancel any time before the "
+"visit."
+msgstr ""
+"پزشک درخواست شما را تأیید می‌کند. تا قبل از ویزیت هر زمان می‌توانید لغو "
+"کنید."
+
+#: templates/base.html:7
+msgid ""
+"CuraPoint - find trusted doctors, book appointments and manage your health "
+"in one place."
+msgstr ""
+"CuraPoint - پزشکان مورد اعتماد را پیدا کنید، نوبت بگیرید و سلامت خود را در "
+"یک جا مدیریت کنید."
+
+#: templates/core/about.html:3 templates/doctors/doctor_detail.html:26
+#: templates/partials/header.html:12
+msgid "About"
+msgstr "درباره ما"
+
+#: templates/core/about.html:5 templates/doctors/doctor_detail.html:7
+#: templates/doctors/doctor_list.html:5 templates/partials/header.html:9
+msgid "Home"
+msgstr "خانه"
+
+#: templates/core/about.html:5
+msgid "/ About"
+msgstr "/ درباره ما"
+
+#: templates/core/about.html:5
+msgid "About CuraPoint"
+msgstr "درباره CuraPoint"
+
+#: templates/core/about.html:5
+msgid "Healthcare that's easy to find, book and manage."
+msgstr "خدمات درمانی که پیدا کردن، رزرو و مدیریتش آسان است."
+
+#: templates/core/about.html:8
+msgid "Our mission"
+msgstr "مأموریت ما"
+
+#: templates/core/about.html:9
+msgid "Making quality care accessible to everyone"
+msgstr "دسترسی همه به درمان باکیفیت"
+
+#: templates/core/about.html:10
+msgid ""
+"CuraPoint connects patients with verified doctors across dozens of "
+"specialties. Patients book in seconds and keep their records in one place. "
+"Doctors manage their schedule and patients from one dashboard."
+msgstr ""
+"CuraPoint بیماران را به پزشکان تأییدشده در ده‌ها تخصص وصل می‌کند. بیماران در"
+" چند ثانیه نوبت می‌گیرند و پرونده‌هایشان را در یک جا نگه می‌دارند. پزشکان "
+"برنامه و بیمارانشان را از یک داشبورد مدیریت می‌کنند."
+
+#: templates/core/about.html:12
+msgid "Verified, licensed healthcare professionals"
+msgstr "پزشکان تأییدشده و دارای مجوز"
+
+#: templates/core/about.html:13
+msgid "Real-time availability and instant booking"
+msgstr "زمان‌های خالی لحظه‌ای و رزرو فوری"
+
+#: templates/core/about.html:14
+msgid "Secure medical records and health tracking"
+msgstr "پرونده پزشکی امن و پیگیری سلامت"
+
+#: templates/core/about.html:15
+msgid "In-person and video consultations"
+msgstr "ویزیت حضوری و مشاوره تصویری"
+
+#: templates/core/about.html:21 templates/doctors/doctor_detail.html:16
+#: templates/partials/footer.html:9
+msgid "Patients"
+msgstr "بیماران"
+
+#: templates/core/about.html:22
+msgid "Visits booked"
+msgstr "ویزیت رزروشده"
+
+#: templates/core/about.html:23
+msgid "Avg. rating"
+msgstr "میانگین امتیاز"
+
+#: templates/core/home.html:4
+msgid "Find & book trusted doctors"
+msgstr "پزشک مورد اعتماد پیدا کنید و نوبت بگیرید"
+
+#: templates/core/home.html:9
+msgid "Trusted by thousands of patients"
+msgstr "مورد اعتماد هزاران بیمار"
+
+#: templates/core/home.html:10
+msgid "Your health, <span>one point</span> of care."
+msgstr "سلامت شما، <span>در یک نقطه</span>."
+
+#: templates/core/home.html:11
+msgid ""
+"Find the right specialist, book an appointment in seconds and keep all your "
+"medical records in one secure place."
+msgstr ""
+"متخصص مناسب را پیدا کنید، در چند ثانیه نوبت بگیرید و همه پرونده‌های "
+"پزشکی‌تان را در یک جای امن نگه دارید."
+
+#: templates/core/home.html:13 templates/core/home.html:17
+#: templates/doctors/doctor_list.html:10
+msgid "Search"
+msgstr "جستجو"
+
+#: templates/core/home.html:13
+msgid "Doctor name or condition"
+msgstr "نام پزشک یا بیماری"
+
+#: templates/core/home.html:20
+msgid "Verified doctors"
+msgstr "پزشک تأییدشده"
+
+#: templates/core/home.html:21 templates/core/home.html:36
+#: templates/partials/header.html:11
+msgid "Specialties"
+msgstr "تخصص‌ها"
+
+#: templates/core/home.html:22
+msgid "Average rating"
+msgstr "میانگین امتیاز"
+
+#: templates/core/home.html:27
+msgid "Appointment confirmed"
+msgstr "نوبت تأیید شد"
+
+#: templates/core/home.html:27
+msgid "Tomorrow, 10:30 AM"
+msgstr "فردا، ساعت ۱۰:۳۰"
+
+#: templates/core/home.html:28
+msgid "72 bpm"
+msgstr "۷۲ ضربان در دقیقه"
+
+#: templates/core/home.html:28
+msgid "Heart rate · Normal"
+msgstr "ضربان قلب · طبیعی"
+
+#: templates/core/home.html:36
+msgid "Browse by specialty"
+msgstr "جستجو بر اساس تخصص"
+
+#: templates/core/home.html:36
+msgid ""
+"Care for every need, from routine check-ups to specialist consultations."
+msgstr "درمان برای هر نیازی، از چکاپ معمول تا مشاوره تخصصی."
+
+#: templates/core/home.html:37
+msgid "View all doctors"
+msgstr "مشاهده همه پزشکان"
+
+#: templates/core/home.html:44
+#, python-format
+msgid "%(n)s doctor"
+msgid_plural "%(n)s doctors"
+msgstr[0] "%(n)s پزشک"
+msgstr[1] "%(n)s پزشک"
+
+#: templates/core/home.html:54
+msgid "Top rated"
+msgstr "برترین‌ها"
+
+#: templates/core/home.html:54
+msgid "Meet our featured doctors"
+msgstr "با پزشکان منتخب ما آشنا شوید"
+
+#: templates/core/home.html:54
+msgid "Highly rated specialists ready to help you feel your best."
+msgstr "متخصصان پرامتیاز، آماده کمک به سلامت شما."
+
+#: templates/core/home.html:57
+msgid "No doctors yet."
+msgstr "هنوز پزشکی ثبت نشده است."
+
+#: templates/core/home.html:64 templates/partials/footer.html:10
+msgid "How it works"
+msgstr "چطور کار می‌کند"
+
+#: templates/core/home.html:64
+msgid "Care in three simple steps"
+msgstr "درمان در سه قدم ساده"
+
+#: templates/core/home.html:66
+msgid "Find your doctor"
+msgstr "پزشک خود را پیدا کنید"
+
+#: templates/core/home.html:66
+msgid ""
+"Search by specialty, location, rating or availability and compare verified "
+"profiles."
+msgstr ""
+"بر اساس تخصص، موقعیت، امتیاز یا زمان خالی جستجو کنید و پروفایل‌ها را مقایسه "
+"کنید."
+
+#: templates/core/home.html:67
+msgid "Book instantly"
+msgstr "فوری رزرو کنید"
+
+#: templates/core/home.html:67
+msgid ""
+"Pick a time that works for you, in person or by video, and get confirmation "
+"fast."
+msgstr "زمان مناسب خود را حضوری یا تصویری انتخاب کنید و سریع تأیید بگیرید."
+
+#: templates/core/home.html:68
+msgid "Track your health"
+msgstr "سلامت خود را پیگیری کنید"
+
+#: templates/core/home.html:68
+msgid ""
+"Access records, prescriptions and health metrics from your personal "
+"dashboard."
+msgstr ""
+"از داشبورد شخصی به پرونده‌ها، نسخه‌ها و شاخص‌های سلامت دسترسی داشته باشید."
+
+#: templates/core/home.html:71
+msgid "Are you a healthcare professional?"
+msgstr "پزشک یا کادر درمان هستید؟"
+
+#: templates/core/home.html:71
+msgid ""
+"Join CuraPoint to manage appointments, patients and your schedule with ease."
+msgstr ""
+"به CuraPoint بپیوندید تا نوبت‌ها، بیماران و برنامه‌تان را به‌راحتی مدیریت "
+"کنید."
+
+#: templates/core/home.html:72
+msgid "Join as a doctor"
+msgstr "عضویت به عنوان پزشک"
+
+#: templates/dashboard/_metrics.html:7 templates/dashboard/doctor.html:57
+#: templates/doctors/doctor_detail.html:42
+#, python-format
+msgid "%(t)s ago"
+msgstr "%(t)s پیش"
+
+#: templates/dashboard/_metrics.html:9
+msgid "No health metrics recorded yet."
+msgstr "هنوز شاخص سلامتی ثبت نشده است."
+
+#: templates/dashboard/doctor.html:4
+msgid "Doctor dashboard"
+msgstr "داشبورد پزشک"
+
+#: templates/dashboard/doctor.html:7
+#, python-format
+msgid "Good day, %(doctor)s"
+msgstr "روز بخیر، %(doctor)s"
+
+#: templates/dashboard/doctor.html:7
+#, python-format
+msgid "You have %(n)s appointment today."
+msgid_plural "You have %(n)s appointments today."
+msgstr[0] "امروز %(n)s نوبت دارید."
+msgstr[1] "امروز %(n)s نوبت دارید."
+
+#: templates/dashboard/doctor.html:8
+msgid "All appointments"
+msgstr "همه نوبت‌ها"
+
+#: templates/dashboard/doctor.html:11
+msgid "Today"
+msgstr "امروز"
+
+#: templates/dashboard/doctor.html:12
+msgid "Pending requests"
+msgstr "درخواست‌های در انتظار"
+
+#: templates/dashboard/doctor.html:13
+msgid "Total patients"
+msgstr "کل بیماران"
+
+#: templates/dashboard/doctor.html:14
+#, python-format
+msgid "Earned (%(n)s visits)"
+msgstr "درآمد (%(n)s ویزیت)"
+
+#: templates/dashboard/doctor.html:19
+msgid "Today's schedule"
+msgstr "برنامه امروز"
+
+#: templates/dashboard/doctor.html:19 templates/dashboard/doctor.html:48
+#, python-format
+msgid "%(n)s visits"
+msgstr "%(n)s ویزیت"
+
+#: templates/dashboard/doctor.html:26
+msgid "Mark completed"
+msgstr "علامت‌گذاری به عنوان انجام‌شده"
+
+#: templates/dashboard/doctor.html:26
+msgid "Done"
+msgstr "انجام شد"
+
+#: templates/dashboard/doctor.html:29
+msgid "No appointments scheduled for today."
+msgstr "برای امروز نوبتی ثبت نشده است."
+
+#: templates/dashboard/doctor.html:32
+msgid "Appointment requests"
+msgstr "درخواست‌های نوبت"
+
+#: templates/dashboard/doctor.html:32 templates/dashboard/patient.html:27
+#: templates/dashboard/patient.html:44
+msgid "View all"
+msgstr "مشاهده همه"
+
+#: templates/dashboard/doctor.html:39
+msgid "Accept"
+msgstr "پذیرش"
+
+#: templates/dashboard/doctor.html:40
+msgid "Decline this request?"
+msgstr "این درخواست رد شود؟"
+
+#: templates/dashboard/doctor.html:43
+msgid "No pending requests."
+msgstr "درخواست در انتظاری وجود ندارد."
+
+#: templates/dashboard/doctor.html:48
+msgid "This week"
+msgstr "این هفته"
+
+#: templates/dashboard/doctor.html:52
+msgid "Upcoming confirmed"
+msgstr "نوبت‌های تأییدشده پیش رو"
+
+#: templates/dashboard/doctor.html:53
+msgid "Nothing scheduled."
+msgstr "برنامه‌ای ثبت نشده است."
+
+#: templates/dashboard/doctor.html:56
+msgid "Recent reviews"
+msgstr "نظرات اخیر"
+
+#: templates/dashboard/doctor.html:57
+msgid "(no comment)"
+msgstr "(بدون نظر)"
+
+#: templates/dashboard/doctor.html:57 templates/doctors/doctor_detail.html:43
+msgid "No reviews yet."
+msgstr "هنوز نظری ثبت نشده است."
+
+#: templates/dashboard/doctor_patient_detail.html:3
+#, python-format
+msgid "%(patient)s - Patient chart"
+msgstr "%(patient)s - پرونده بیمار"
+
+#: templates/dashboard/doctor_patient_detail.html:8
+msgid "Vitals"
+msgstr "علائم حیاتی"
+
+#: templates/dashboard/doctor_patient_detail.html:11
+#: templates/dashboard/patient.html:45
+msgid "No records yet."
+msgstr "هنوز پرونده‌ای ثبت نشده است."
+
+#: templates/dashboard/doctor_patient_detail.html:14
+msgid "Add medical record"
+msgstr "افزودن پرونده پزشکی"
+
+#: templates/dashboard/doctor_patient_detail.html:20
+msgid "Add record"
+msgstr "افزودن پرونده"
+
+#: templates/dashboard/doctor_patient_detail.html:26
+#: templates/dashboard/patient.html:39
+msgid "BMI"
+msgstr "شاخص توده بدنی"
+
+#: templates/dashboard/doctor_patient_detail.html:26
+#: templates/dashboard/patient.html:40
+msgid "None"
+msgstr "ندارد"
+
+#: templates/dashboard/doctor_patient_detail.html:26
+msgid "Conditions"
+msgstr "بیماری‌ها"
+
+#: templates/dashboard/doctor_patient_detail.html:28
+msgid "Visits with you"
+msgstr "ویزیت‌ها با شما"
+
+#: templates/dashboard/doctor_patients.html:5
+msgid "Everyone who has booked with you."
+msgstr "همه کسانی که از شما نوبت گرفته‌اند."
+
+#: templates/dashboard/doctor_patients.html:6
+msgid "Search patients"
+msgstr "جستجوی بیماران"
+
+#: templates/dashboard/doctor_patients.html:8
+#: templates/partials/footer.html:11
+msgid "Contact"
+msgstr "تماس"
+
+#: templates/dashboard/doctor_patients.html:8
+msgid "Visits"
+msgstr "ویزیت‌ها"
+
+#: templates/dashboard/doctor_patients.html:8
+msgid "Last visit"
+msgstr "آخرین ویزیت"
+
+#: templates/dashboard/doctor_patients.html:10
+#, python-format
+msgid "%(n)s yrs"
+msgstr "%(n)s سال"
+
+#: templates/dashboard/doctor_patients.html:14
+msgid "Open chart"
+msgstr "باز کردن پرونده"
+
+#: templates/dashboard/doctor_patients.html:15
+msgid "No patients found."
+msgstr "بیماری پیدا نشد."
+
+#: templates/dashboard/patient.html:3 templates/partials/footer.html:9
+msgid "My dashboard"
+msgstr "داشبورد من"
+
+#: templates/dashboard/patient.html:6
+#, python-format
+msgid "Hello, %(name)s"
+msgstr "سلام، %(name)s"
+
+#: templates/dashboard/patient.html:6
+msgid "Here's an overview of your health and upcoming care."
+msgstr "این نمای کلی از سلامت و ویزیت‌های پیش روی شماست."
+
+#: templates/dashboard/patient.html:7 templates/doctors/doctor_detail.html:55
+msgid "Book appointment"
+msgstr "رزرو نوبت"
+
+#: templates/dashboard/patient.html:10
+msgid "Upcoming visits"
+msgstr "ویزیت‌های پیش رو"
+
+#: templates/dashboard/patient.html:12
+msgid "My doctors"
+msgstr "پزشکان من"
+
+#: templates/dashboard/patient.html:13 templates/dashboard/patient.html:44
+msgid "Recent records"
+msgstr "پرونده‌های اخیر"
+
+#: templates/dashboard/patient.html:19
+msgid "Next appointment"
+msgstr "نوبت بعدی"
+
+#: templates/dashboard/patient.html:22
+msgid "View details"
+msgstr "مشاهده جزئیات"
+
+#: templates/dashboard/patient.html:25
+msgid "Health overview"
+msgstr "وضعیت سلامت"
+
+#: templates/dashboard/patient.html:25
+msgid "Log reading"
+msgstr "ثبت مقدار"
+
+#: templates/dashboard/patient.html:27
+msgid "Upcoming appointments"
+msgstr "نوبت‌های پیش رو"
+
+#: templates/dashboard/patient.html:28
+msgid "No upcoming appointments."
+msgstr "نوبت پیش رویی ندارید."
+
+#: templates/dashboard/patient.html:33
+msgid "My profile"
+msgstr "پروفایل من"
+
+#: templates/dashboard/patient.html:33
+msgid "Edit"
+msgstr "ویرایش"
+
+#: templates/dashboard/patient.html:37
+msgid "Height"
+msgstr "قد"
+
+#: templates/dashboard/patient.html:37
+msgid "cm"
+msgstr "سانتی‌متر"
+
+#: templates/dashboard/patient.html:38
+msgid "kg"
+msgstr "کیلوگرم"
+
+#: templates/dashboard/patient.html:48
+msgid "Visit history"
+msgstr "سابقه ویزیت‌ها"
+
+#: templates/dashboard/patient.html:49
+msgid "No past visits."
+msgstr "ویزیت قبلی وجود ندارد."
+
+#: templates/doctors/availability.html:5
+msgid "Set the weekly hours when patients can book you."
+msgstr "ساعات هفتگی که بیماران می‌توانند نوبت بگیرند را تنظیم کنید."
+
+#: templates/doctors/availability.html:19
+msgid "Remove"
+msgstr "حذف"
+
+#: templates/doctors/availability.html:35
+msgid "Add hours"
+msgstr "افزودن ساعت"
+
+#: templates/doctors/availability.html:36
+msgid "Save availability"
+msgstr "ذخیره ساعات کاری"
+
+#: templates/doctors/doctor_detail.html:11
+msgid "Verified"
+msgstr "تأییدشده"
+
+#: templates/doctors/doctor_detail.html:13
+#, python-format
+msgid "%(n)s review"
+msgid_plural "%(n)s reviews"
+msgstr[0] "%(n)s نظر"
+msgstr[1] "%(n)s نظر"
+
+#: templates/doctors/doctor_detail.html:15
+#, python-format
+msgid "%(n)s+ yrs"
+msgstr "+%(n)s سال"
+
+#: templates/doctors/doctor_detail.html:15
+msgid "Experience"
+msgstr "تجربه"
+
+#: templates/doctors/doctor_detail.html:17
+msgid "Per visit"
+msgstr "هر ویزیت"
+
+#: templates/doctors/doctor_detail.html:26
+msgid "This doctor hasn't added a bio yet."
+msgstr "این پزشک هنوز بیوگرافی اضافه نکرده است."
+
+#: templates/doctors/doctor_detail.html:28
+msgid "Not provided"
+msgstr "ثبت نشده"
+
+#: templates/doctors/doctor_detail.html:29
+msgid "Languages & services"
+msgstr "زبان‌ها و خدمات"
+
+#: templates/doctors/doctor_detail.html:29
+msgid "In-person visits"
+msgstr "ویزیت حضوری"
+
+#: templates/doctors/doctor_detail.html:32
+msgid "Patient reviews"
+msgstr "نظرات بیماران"
+
+#: templates/doctors/doctor_detail.html:35
+msgid "Rate your recent visit"
+msgstr "به ویزیت اخیر خود امتیاز دهید"
+
+#: templates/doctors/doctor_detail.html:38
+msgid "Submit review"
+msgstr "ثبت نظر"
+
+#: templates/doctors/doctor_detail.html:45
+#, python-format
+msgid "Other %(s)s specialists"
+msgstr "سایر متخصصان %(s)s"
+
+#: templates/doctors/doctor_detail.html:50
+msgid "Pick a day to see open slots."
+msgstr "یک روز را انتخاب کنید تا زمان‌های خالی را ببینید."
+
+#: templates/doctors/doctor_detail.html:52
+#, python-format
+msgid "%(n)s slots"
+msgstr "%(n)s نوبت"
+
+#: templates/doctors/doctor_detail.html:56
+msgid "Not accepting new patients right now."
+msgstr "در حال حاضر بیمار جدید نمی‌پذیرد."
+
+#: templates/doctors/doctor_detail.html:57
+msgid "Free cancellation up to the appointment time."
+msgstr "لغو رایگان تا زمان نوبت."
+
+#: templates/doctors/doctor_detail.html:59
+msgid "Working hours"
+msgstr "ساعات کاری"
+
+#: templates/doctors/doctor_detail.html:59
+msgid "No hours published yet."
+msgstr "هنوز ساعت کاری ثبت نشده است."
+
+#: templates/doctors/doctor_list.html:5
+msgid "/ Doctors"
+msgstr "/ پزشکان"
+
+#: templates/doctors/doctor_list.html:5
+msgid "Browse verified specialists and book an appointment that suits you."
+msgstr "متخصصان تأییدشده را ببینید و نوبت مناسب خود را رزرو کنید."
+
+#: templates/doctors/doctor_list.html:9
+msgid "Filters"
+msgstr "فیلترها"
+
+#: templates/doctors/doctor_list.html:13
+msgid "Rating"
+msgstr "امتیاز"
+
+#: templates/doctors/doctor_list.html:14
+msgid "Options"
+msgstr "گزینه‌ها"
+
+#: templates/doctors/doctor_list.html:18
+msgid "Apply filters"
+msgstr "اعمال فیلترها"
+
+#: templates/doctors/doctor_list.html:19
+msgid "Reset"
+msgstr "پاک کردن"
+
+#: templates/doctors/doctor_list.html:24
+#, python-format
+msgid "<strong style=\"color:var(--ink)\">%(n)s</strong> doctor found"
+msgid_plural "<strong style=\"color:var(--ink)\">%(n)s</strong> doctors found"
+msgstr[0] "<strong style=\"color:var(--ink)\">%(n)s</strong> پزشک پیدا شد"
+msgstr[1] "<strong style=\"color:var(--ink)\">%(n)s</strong> پزشک پیدا شد"
+
+#: templates/doctors/doctor_list.html:27
+msgid "Sort"
+msgstr "مرتب‌سازی"
+
+#: templates/doctors/doctor_list.html:33
+msgid "No doctors match your filters"
+msgstr "پزشکی با این فیلترها پیدا نشد"
+
+#: templates/doctors/doctor_list.html:33
+msgid "Try a different specialty or clear some filters."
+msgstr "تخصص دیگری را امتحان کنید یا برخی فیلترها را پاک کنید."
+
+#: templates/doctors/doctor_list.html:33
+msgid "Clear filters"
+msgstr "پاک کردن فیلترها"
+
+#: templates/doctors/doctor_list.html:37
+msgid "Pagination"
+msgstr "صفحه‌بندی"
+
+#: templates/doctors/doctor_list.html:38
+msgid "Previous"
+msgstr "قبلی"
+
+#: templates/doctors/doctor_list.html:40
+msgid "Next"
+msgstr "بعدی"
+
+#: templates/errors/404.html:1
+msgid "Page not found"
+msgstr "صفحه پیدا نشد"
+
+#: templates/errors/404.html:2
+msgid "We couldn't find that page"
+msgstr "این صفحه را پیدا نکردیم"
+
+#: templates/errors/404.html:2
+msgid "The page may have moved, or the link is incorrect."
+msgstr "ممکن است صفحه جابه‌جا شده یا لینک اشتباه باشد."
+
+#: templates/errors/404.html:2 templates/errors/500.html:2
+msgid "Back to home"
+msgstr "بازگشت به خانه"
+
+#: templates/errors/500.html:1
+msgid "Server error · CuraPoint"
+msgstr "خطای سرور · CuraPoint"
+
+#: templates/errors/500.html:2
+msgid "Something went wrong"
+msgstr "مشکلی پیش آمد"
+
+#: templates/errors/500.html:2
+msgid "Our team has been notified. Please try again in a moment."
+msgstr "تیم ما مطلع شد. لطفاً چند لحظه دیگر دوباره تلاش کنید."
+
+#: templates/partials/doctor_card.html:11
+msgid "Accepting patients"
+msgstr "پذیرش بیمار"
+
+#: templates/partials/doctor_card.html:12
+#, python-format
+msgid "%(n)s yrs exp."
+msgstr "%(n)s سال تجربه"
+
+#: templates/partials/doctor_card.html:14
+msgid "Video visits"
+msgstr "ویزیت تصویری"
+
+#: templates/partials/doctor_card.html:17
+msgid "/ visit"
+msgstr "/ ویزیت"
+
+#: templates/partials/doctor_card.html:19
+msgid "Profile"
+msgstr "پروفایل"
+
+#: templates/partials/doctor_card.html:20
+msgid "Book"
+msgstr "رزرو"
+
+#: templates/partials/field.html:2
+msgid "(optional)"
+msgstr "(اختیاری)"
+
+#: templates/partials/footer.html:6
+msgid ""
+"Connecting patients with trusted doctors. Book visits, manage records and "
+"stay on top of your health, all in one place."
+msgstr ""
+"اتصال بیماران به پزشکان مورد اعتماد. رزرو ویزیت، مدیریت پرونده‌ها و پیگیری "
+"سلامت، همه در یک جا."
+
+#: templates/partials/footer.html:7
+msgid "Facebook"
+msgstr "فیسبوک"
+
+#: templates/partials/footer.html:7
+msgid "Instagram"
+msgstr "اینستاگرام"
+
+#: templates/partials/footer.html:7
+msgid "LinkedIn"
+msgstr "لینکدین"
+
+#: templates/partials/footer.html:10
+msgid "Join CuraPoint"
+msgstr "عضویت در CuraPoint"
+
+#: templates/partials/footer.html:10
+msgid "Doctor login"
+msgstr "ورود پزشکان"
+
+#: templates/partials/footer.html:13
+msgid "CuraPoint. All rights reserved."
+msgstr "CuraPoint. تمامی حقوق محفوظ است."
+
+#: templates/partials/footer.html:13
+msgid "Privacy"
+msgstr "حریم خصوصی"
+
+#: templates/partials/footer.html:13
+msgid "Terms"
+msgstr "شرایط استفاده"
+
+#: templates/partials/header.html:4
+msgid "CuraPoint home"
+msgstr "صفحه اصلی CuraPoint"
+
+#: templates/partials/header.html:8
+msgid "Main"
+msgstr "اصلی"
+
+#: templates/partials/header.html:10
+msgid "Find doctors"
+msgstr "پیدا کردن پزشک"
+
+#: templates/partials/header.html:13 templates/partials/header.html:31
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: templates/partials/header.html:29
+msgid "Signed in as"
+msgstr "وارد شده با"
+
+#: templates/partials/header.html:34
+msgid "Admin"
+msgstr "مدیریت"
+
+#: templates/partials/header.html:36
+msgid "Log out"
+msgstr "خروج"
+
+#: templates/partials/header.html:41
+msgid "Sign up"
+msgstr "ثبت‌نام"
+
+#: templates/partials/header.html:43
+msgid "Toggle menu"
+msgstr "باز و بسته کردن منو"
+
+#: templates/partials/messages.html:7
+msgid "Dismiss"
+msgstr "بستن"
+
+#: templates/records/metrics.html:5
+msgid "Log readings to track trends over time."
+msgstr "مقادیر را ثبت کنید تا روند تغییرات را ببینید."
+
+#: templates/records/metrics.html:9
+msgid "Recorded"
+msgstr "زمان ثبت"
+
+#: templates/records/metrics.html:11
+msgid "No readings yet"
+msgstr "هنوز مقداری ثبت نشده"
+
+#: templates/records/metrics.html:11
+msgid "Add your first reading with the form."
+msgstr "اولین مقدار را با فرم ثبت کنید."
+
+#: templates/records/metrics.html:15
+msgid "Add a reading"
+msgstr "ثبت مقدار جدید"
+
+#: templates/records/metrics.html:21
+msgid "Save reading"
+msgstr "ذخیره مقدار"
+
+#: templates/records/record_list.html:5
+msgid "Diagnoses, prescriptions, lab results and more from your care team."
+msgstr "تشخیص‌ها، نسخه‌ها، نتایج آزمایش و موارد دیگر از تیم درمانی شما."
+
+#: templates/records/record_list.html:12
+#, python-format
+msgid "by %(d)s"
+msgstr "توسط %(d)s"
+
+#: templates/records/record_list.html:17
+msgid "No records yet"
+msgstr "هنوز پرونده‌ای وجود ندارد"
+
+#: templates/records/record_list.html:17
+msgid "Records added by your doctors will appear here."
+msgstr "پرونده‌هایی که پزشکانتان اضافه می‌کنند اینجا نمایش داده می‌شوند."

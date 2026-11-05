@@ -64,3 +64,14 @@ python manage.py collectstatic --noinput
 gunicorn curapoint.wsgi
 ```
 Static files are served by WhiteNoise.
+
+## Languages (English / فارسی)
+The UI is bilingual. Use the globe button in the header to switch; Persian switches the layout to right-to-left and uses the Vazirmatn font. The browser's `Accept-Language` sets the language on the first visit.
+
+Translations are in `locale/fa/LC_MESSAGES/django.po`. The compiled `django.mo` is committed, so you don't need gettext just to run the app. After changing strings:
+```bash
+python manage.py makemessages -l fa --ignore=.venv --ignore=staticfiles --ignore=static
+# edit locale/fa/LC_MESSAGES/django.po
+python manage.py compilemessages --ignore=.venv
+```
+Demo content (doctor names, bios, appointment reasons) stays in English; specialty names are translated.

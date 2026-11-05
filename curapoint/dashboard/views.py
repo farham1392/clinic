@@ -7,6 +7,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
+from django.utils.translation import gettext as _
 
 from accounts.models import User
 from appointments.models import Appointment
@@ -125,9 +126,9 @@ def doctor_patient_detail(request, pk):
             record = form.save(commit=False)
             record.patient, record.doctor = patient, doctor
             record.save()
-            messages.success(request, "Medical record added.")
+            messages.success(request, _("Medical record added."))
             return redirect("dashboard:patient_detail", pk=patient.pk)
-        messages.error(request, "Please correct the errors in the record form.")
+        messages.error(request, _("Please correct the errors in the record form."))
     context = {
         "patient": patient,
         "profile": getattr(patient, "patient_profile", None),

@@ -1,13 +1,14 @@
 {% extends "app_base.html" %}
-{% block title %}Profile settings{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Profile settings" %}{% endblock %}
 {% block app_content %}
-<div class="app-head"><div><h1>Profile settings</h1><p>Keep your personal{% if user.is_doctor %} and professional{% else %} and medical{% endif %} details up to date.</p></div></div>
+<div class="app-head"><div><h1>{% translate "Profile settings" %}</h1><p>{% if user.is_doctor %}{% translate "Keep your personal and professional details up to date." %}{% else %}{% translate "Keep your personal and medical details up to date." %}{% endif %}</p></div></div>
 <form method="post" enctype="multipart/form-data" novalidate>
   {% csrf_token %}
   <div class="dash-grid" style="margin-top:0">
     <div>
       <div class="card">
-        <div class="card-header"><h3>Personal information</h3></div>
+        <div class="card-header"><h3>{% translate "Personal information" %}</h3></div>
         {% include "partials/form_errors.html" with form=user_form %}
         <div class="flex items-center gap-2 mb-3">{% include "partials/avatar.html" with person=user size="avatar-lg" %}<div><strong style="color:var(--ink)">{{ user }}</strong><div class="text-sm text-muted">{{ user.email }} · {{ user.get_role_display }}</div></div></div>
         <div class="form-row">{% include "partials/field.html" with field=user_form.first_name %}{% include "partials/field.html" with field=user_form.last_name %}</div>
@@ -17,7 +18,7 @@
       </div>
       {% if extra_form %}
       <div class="card mt-2">
-        <div class="card-header"><h3>{% if user.is_doctor %}Professional profile{% else %}Medical information{% endif %}</h3></div>
+        <div class="card-header"><h3>{% if user.is_doctor %}{% translate "Professional profile" %}{% else %}{% translate "Medical information" %}{% endif %}</h3></div>
         {% include "partials/form_errors.html" with form=extra_form %}
         <div class="form-row">
           {% for field in extra_form %}
@@ -32,10 +33,10 @@
       {% endif %}
     </div>
     <div class="card">
-      <h3>Save changes</h3>
-      <p class="text-muted text-sm">Your information is stored securely and only shared with your care team.</p>
-      <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> Save profile</button>
-      {% if user.is_doctor %}<a href="{% url 'doctors:availability' %}" class="btn btn-soft btn-block mt-1"><i class="fa-regular fa-clock"></i> Manage availability</a>{% endif %}
+      <h3>{% translate "Save changes" %}</h3>
+      <p class="text-muted text-sm">{% translate "Your information is stored securely and only shared with your care team." %}</p>
+      <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-floppy-disk"></i> {% translate "Save profile" %}</button>
+      {% if user.is_doctor %}<a href="{% url 'doctors:availability' %}" class="btn btn-soft btn-block mt-1"><i class="fa-regular fa-clock"></i> {% translate "Manage availability" %}</a>{% endif %}
     </div>
   </div>
 </form>
