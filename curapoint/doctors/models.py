@@ -163,7 +163,7 @@ class Availability(models.Model):
         ordering = ["weekday", "start_time"]
         verbose_name_plural = "availability"
         constraints = [
-            models.CheckConstraint(check=models.Q(end_time__gt=models.F("start_time")), name="availability_end_after_start"),
+            models.CheckConstraint(condition=models.Q(end_time__gt=models.F("start_time")), name="availability_end_after_start"),
         ]
 
     def __str__(self):
