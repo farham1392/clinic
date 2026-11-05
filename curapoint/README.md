@@ -19,6 +19,18 @@ python manage.py migrate
 python manage.py seed_data          # add --flush to reset demo data
 python manage.py runserver
 ```
+
+On Windows (PowerShell):
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1   # if blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+python -m pip install -r requirements.txt
+python manage.py migrate
+python manage.py seed_data
+python manage.py runserver
+```
+`ModuleNotFoundError: No module named 'whitenoise'` means the requirements were not installed in the Python you are running; run `python -m pip install -r requirements.txt`.
+
 Open http://127.0.0.1:8000
 
 | Role    | Email                  | Password  |
