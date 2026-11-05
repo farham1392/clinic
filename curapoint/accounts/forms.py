@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import authenticate, password_validation
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils.translation import gettext_lazy as _
 
 from doctors.models import Doctor, Specialty
 
@@ -23,9 +24,9 @@ class StyledFormMixin:
 
 
 class LoginForm(StyledFormMixin, AuthenticationForm):
-    username = forms.EmailField(label="Email address", widget=forms.EmailInput(attrs={"autofocus": True, "placeholder": "you@example.com", "autocomplete": "email"}))
-    password = forms.CharField(label="Password", strip=False, widget=forms.PasswordInput(attrs={"placeholder": "••••••••", "autocomplete": "current-password"}))
-    remember_me = forms.BooleanField(required=False, initial=True, label="Remember me")
+    username = forms.EmailField(label=_("Email address"), widget=forms.EmailInput(attrs={"autofocus": True, "placeholder": "you@example.com", "autocomplete": "email"}))
+    password = forms.CharField(label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={"placeholder": "••••••••", "autocomplete": "current-password"}))
+    remember_me = forms.BooleanField(required=False, initial=True, label=_("Remember me"))
 
     def clean(self):
         email = self.cleaned_data.get("username")
@@ -36,22 +37,23 @@ class LoginForm(StyledFormMixin, AuthenticationForm):
 
 class SignUpForm(StyledFormMixin, forms.ModelForm):
     role = forms.ChoiceField(
-        choices=[(User.Role.PATIENT, "I'm a patient"), (User.Role.DOCTOR, "I'm a doctor")],
+        choices=[(User.Role.PATIENT, _("I'm a patient")), (User.Role.DOCTOR, _("I'm a doctor"))],
         widget=forms.RadioSelect,
         initial=User.Role.PATIENT,
     )
-    password1 = forms.CharField(label="Password", strip=False, widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "At least 8 characters"}))
-    password2 = forms.CharField(label="Confirm password", strip=False, widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": "Repeat password"}))
-    specialty = forms.ModelChoiceField(queryset=Specialty.objects.all(), required=False, empty_label="Select your specialty")
-    license_number = forms.CharField(max_length=50, required=False, widget=forms.TextInput(attrs={"placeholder": "Medical license number"}))
-    accept_terms = forms.BooleanField(label="I agree to the Terms of Service and Privacy Policy")
+    password1 = forms.CharField(label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": _("At least 8 characters")}))
+    password2 = forms.CharField(label=_("Confirm password"), strip=False, widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "placeholder": _("Repeat password")}))
+    specialty = forms.ModelChoiceField(queryset=Specialty.objects.all(), required=False, label=_("Specialty"), empty_label=_("Select your specialty"))
+    license_number = forms.CharField(max_length=50, required=False, label=_("License number"), widget=forms.TextInput(attrs={"placeholder": _("Medical license number")}))
+    accept_terms = forms.BooleanField(label=_("I agree to the Terms of Service and Privacy Policy"))
 
     class Meta:
         model = User
         fields = ["first_name", "last_name", "email", "phone"]
+        labels = {"email": _("Email address"), "phone": _("Phone")}
         widgets = {
-            "first_name": forms.TextInput(attrs={"placeholder": "Jane"}),
-            "last_name": forms.TextInput(attrs={"placeholder": "Doe"}),
+            "first_name": forms.TextInput(attrs={"placeholder": _("Jane")}),
+            "last_name": forms.TextInput(attrs={"placeholder": _("Doe")}),
             "email": forms.EmailInput(attrs={"placeholder": "you@example.com", "autocomplete": "email"}),
             "phone": forms.TextInput(attrs={"placeholder": "+1 555 000 0000"}),
         }
@@ -64,14 +66,14 @@ class SignUpForm(StyledFormMixin, forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data["email"].lower()
         if User.objects.filter(email__iexact=email).exists():
-            raise forms.ValidationError("An account with this email already exists.")
+            raise forms.ValidationError(_("An account with this email already exists."))
         return email
 
     def clean(self):
         cleaned = super().clean()
         p1, p2 = cleaned.get("password1"), cleaned.get("password2")
         if p1 and p2 and p1 != p2:
-            self.add_error("password2", "The two passwords don't match.")
+            self.add_error("password2", _("The two passwords don't match."))
         if p1:
             candidate = User(email=cleaned.get("email", ""), first_name=cleaned.get("first_name", ""), last_name=cleaned.get("last_name", ""))
             try:
@@ -80,9 +82,9 @@ class SignUpForm(StyledFormMixin, forms.ModelForm):
                 self.add_error("password1", exc)
         if cleaned.get("role") == User.Role.DOCTOR:
             if not cleaned.get("specialty"):
-                self.add_error("specialty", "Please choose your specialty.")
+                self.add_error("specialty", _("Please choose your specialty."))
             if not cleaned.get("license_number"):
-                self.add_error("license_number", "A license number is required for doctors.")
+                self.add_error("license_number", _("A license number is required for doctors."))
         return cleaned
 
     def save(self, commit=True):
@@ -107,6 +109,7 @@ class UserProfileForm(StyledFormMixin, forms.ModelForm):
     class Meta:
         model = User
         fields = ["first_name", "last_name", "phone", "date_of_birth", "gender", "address", "avatar"]
+        labels = {"phone": _("Phone"), "date_of_birth": _("Date of birth"), "gender": _("Gender"), "address": _("Address"), "avatar": _("Profile photo")}
         widgets = {"date_of_birth": forms.DateInput(attrs={"type": "date"}, format="%Y-%m-%d")}
 
     def clean_date_of_birth(self):
@@ -114,7 +117,7 @@ class UserProfileForm(StyledFormMixin, forms.ModelForm):
 
         dob = self.cleaned_data.get("date_of_birth")
         if dob and dob > timezone.localdate():
-            raise forms.ValidationError("Date of birth can't be in the future.")
+            raise forms.ValidationError(_("Date of birth can't be in the future."))
         return dob
 
 
@@ -122,6 +125,11 @@ class PatientProfileForm(StyledFormMixin, forms.ModelForm):
     class Meta:
         model = PatientProfile
         exclude = ["user"]
+        labels = {
+            "blood_type": _("Blood type"), "height_cm": _("Height (cm)"), "weight_kg": _("Weight (kg)"), "allergies": _("Allergies"),
+            "chronic_conditions": _("Chronic conditions"), "emergency_contact_name": _("Emergency contact name"),
+            "emergency_contact_phone": _("Emergency contact phone"),
+        }
         widgets = {
             "allergies": forms.Textarea(attrs={"rows": 2}),
             "chronic_conditions": forms.Textarea(attrs={"rows": 2}),
@@ -130,13 +138,13 @@ class PatientProfileForm(StyledFormMixin, forms.ModelForm):
     def clean_height_cm(self):
         h = self.cleaned_data.get("height_cm")
         if h is not None and not 40 <= h <= 260:
-            raise forms.ValidationError("Enter a height between 40 and 260 cm.")
+            raise forms.ValidationError(_("Enter a height between 40 and 260 cm."))
         return h
 
     def clean_weight_kg(self):
         w = self.cleaned_data.get("weight_kg")
         if w is not None and not 2 <= w <= 400:
-            raise forms.ValidationError("Enter a weight between 2 and 400 kg.")
+            raise forms.ValidationError(_("Enter a weight between 2 and 400 kg."))
         return w
 
 
@@ -148,3 +156,10 @@ class DoctorProfileForm(StyledFormMixin, forms.ModelForm):
             "consultation_fee", "clinic_name", "location", "image", "offers_video", "is_accepting_patients",
         ]
         widgets = {"bio": forms.Textarea(attrs={"rows": 4}), "education": forms.Textarea(attrs={"rows": 3})}
+        labels = {
+            "specialty": _("Specialty"), "title": _("Professional title"), "bio": _("Biography"), "education": _("Education"),
+            "languages": _("Languages"), "license_number": _("License number"), "years_experience": _("Years of experience"),
+            "consultation_fee": _("Consultation fee"), "clinic_name": _("Clinic name"), "location": _("Location"), "image": _("Photo"),
+            "offers_video": _("Offers video consultations"), "is_accepting_patients": _("Accepting new patients"),
+        }
+        help_texts = {"title": _("e.g. Senior Cardiologist"), "education": _("One entry per line"), "languages": _("Comma-separated")}

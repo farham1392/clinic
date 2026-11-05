@@ -1,10 +1,10 @@
-<div class="grid grid-3">
+{% load i18n %}<div class="grid grid-3">
   {% for m in metrics %}
   <div class="metric-card">
     <div class="top"><span class="text-sm text-muted">{{ m.label }}</span><span class="icon-tile" style="width:34px;height:34px;font-size:.9rem"><i class="fa-solid {{ m.reading.icon }}"></i></span></div>
     <div class="value">{{ m.reading.display_value }} <span class="unit">{{ m.reading.unit }}</span></div>
     <svg viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><polyline points="{{ m.points }}"/></svg>
-    <div class="text-xs text-muted">{{ m.reading.recorded_at|timesince }} ago</div>
+    <div class="text-xs text-muted">{% blocktranslate with t=m.reading.recorded_at|timesince %}{{ t }} ago{% endblocktranslate %}</div>
   </div>
-  {% empty %}<p class="text-muted">No health metrics recorded yet.</p>{% endfor %}
+  {% empty %}<p class="text-muted">{% translate "No health metrics recorded yet." %}</p>{% endfor %}
 </div>

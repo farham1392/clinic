@@ -92,6 +92,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='availability',
-            constraint=models.CheckConstraint(check=models.Q(('end_time__gt', models.F('start_time'))), name='availability_end_after_start'),
+            constraint=models.CheckConstraint(condition=models.Q(('end_time__gt', models.F('start_time'))), name='availability_end_after_start'),
         ),
     ]

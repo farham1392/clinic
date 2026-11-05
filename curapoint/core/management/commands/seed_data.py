@@ -5,6 +5,7 @@ from decimal import Decimal
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils import timezone
+from django.utils.translation import gettext_noop
 
 from accounts.models import PatientProfile, User
 from appointments.models import Appointment
@@ -14,16 +15,16 @@ from records.models import HealthMetric, MedicalRecord
 DEMO_PASSWORD = "Demo@1234"
 
 SPECIALTIES = [
-    ("Cardiology", "fa-heart-pulse", "Heart and blood vessel care"),
-    ("Dermatology", "fa-hand-dots", "Skin, hair and nail conditions"),
-    ("Pediatrics", "fa-baby", "Care for infants, children and teens"),
-    ("Neurology", "fa-brain", "Brain, spine and nervous system"),
-    ("Orthopedics", "fa-bone", "Bones, joints and muscles"),
-    ("Dentistry", "fa-tooth", "Oral health and dental care"),
-    ("Ophthalmology", "fa-eye", "Eye care and vision"),
-    ("General Practice", "fa-stethoscope", "Primary and preventive care"),
-    ("Psychiatry", "fa-head-side-virus", "Mental health and wellbeing"),
-    ("Gynecology", "fa-person-pregnant", "Women's reproductive health"),
+    (gettext_noop("Cardiology"), "fa-heart-pulse", "Heart and blood vessel care"),
+    (gettext_noop("Dermatology"), "fa-hand-dots", "Skin, hair and nail conditions"),
+    (gettext_noop("Pediatrics"), "fa-baby", "Care for infants, children and teens"),
+    (gettext_noop("Neurology"), "fa-brain", "Brain, spine and nervous system"),
+    (gettext_noop("Orthopedics"), "fa-bone", "Bones, joints and muscles"),
+    (gettext_noop("Dentistry"), "fa-tooth", "Oral health and dental care"),
+    (gettext_noop("Ophthalmology"), "fa-eye", "Eye care and vision"),
+    (gettext_noop("General Practice"), "fa-stethoscope", "Primary and preventive care"),
+    (gettext_noop("Psychiatry"), "fa-head-side-virus", "Mental health and wellbeing"),
+    (gettext_noop("Gynecology"), "fa-person-pregnant", "Women's reproductive health"),
 ]
 
 DOCTORS = [

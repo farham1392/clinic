@@ -2,6 +2,9 @@
   "use strict";
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const T = (() => { try { return JSON.parse(document.getElementById("i18n-strings").textContent); } catch (e) { return {}; } })();
+  const t = (key, fallback) => T[key] || fallback;
+  const LANG = document.documentElement.lang || undefined;
 
   // Mobile navigation
   const toggle = $(".nav-toggle");
@@ -62,7 +65,7 @@
     const renderSlots = (slots) => {
       grid.innerHTML = "";
       if (!slots.length) {
-        grid.innerHTML = '<p class="text-muted text-sm mb-0">No free slots on this day. Please choose another date.</p>';
+        grid.innerHTML = `<p class="text-muted text-sm mb-0">${t("noSlots", "No free slots on this day. Please choose another date.")}</p>`;
         return;
       }
       slots.forEach((s) => {
@@ -73,7 +76,7 @@
           $$(".slot", grid).forEach((x) => x.classList.remove("selected"));
           b.classList.add("selected");
           timeInput.value = s.value;
-          if (summary) summary.textContent = `${new Date(dateInput.value + "T00:00").toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric" })} at ${s.label}`;
+          if (summary) summary.textContent = `${new Date(dateInput.value + "T00:00").toLocaleDateString(LANG, { weekday: "long", month: "short", day: "numeric" })} ${t("at", "at")} ${s.label}`;
         });
         grid.appendChild(b);
       });
@@ -81,14 +84,14 @@
 
     const load = (keepTime) => {
       if (!keepTime) timeInput.value = "";
-      if (summary) summary.textContent = "No time selected";
+      if (summary) summary.textContent = t("noTime", "No time selected");
       $$(".day-chip", booking).forEach((c) => c.classList.toggle("selected", c.dataset.date === dateInput.value));
-      if (!dateInput.value) { grid.innerHTML = '<p class="text-muted text-sm mb-0">Select a date to see available times.</p>'; return; }
-      grid.innerHTML = '<p class="text-muted text-sm mb-0"><i class="fa-solid fa-spinner fa-spin"></i> Loading slots…</p>';
+      if (!dateInput.value) { grid.innerHTML = `<p class="text-muted text-sm mb-0">${t("selectDate", "Select a date to see available times.")}</p>`; return; }
+      grid.innerHTML = `<p class="text-muted text-sm mb-0"><i class="fa-solid fa-spinner fa-spin"></i> ${t("loading", "Loading slots…")}</p>`;
       fetch(`${url}?date=${encodeURIComponent(dateInput.value)}`, { headers: { Accept: "application/json" } })
         .then((r) => r.json())
         .then((data) => renderSlots(data.slots || []))
-        .catch(() => { grid.innerHTML = '<p class="text-danger text-sm">Could not load slots. Please retry.</p>'; });
+        .catch(() => { grid.innerHTML = `<p class="text-danger text-sm">${t("loadError", "Could not load slots. Please retry.")}</p>`; });
     };
 
     $$(".day-chip:not(.disabled)", booking).forEach((chip) => {

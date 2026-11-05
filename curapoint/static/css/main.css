@@ -1,5 +1,6 @@
 /* CuraPoint design system */
 @font-face { font-family: "Inter"; src: url("../vendor/inter/inter-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Vazirmatn"; src: url("../vendor/vazirmatn/Vazirmatn-wght.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 
 :root {
   --primary: #2563eb; --primary-600: #1d4ed8; --primary-50: #eff6ff; --primary-100: #dbeafe;
@@ -350,4 +351,47 @@ body.layout { display: flex; flex-direction: column; min-height: 100vh; }
   .footer-grid { grid-template-columns: 1fr; }
   .appt-row { flex-wrap: wrap; } .appt-row .when { text-align: left; }
   .stat-card { padding: 1rem; } .stat-card .value { font-size: 1.3rem; } .stat-card .icon-tile { width: 42px; height: 42px; }
+}
+
+/* RTL (Persian) */
+[dir="rtl"] body { font-family: "Vazirmatn", "Inter", system-ui, Tahoma, sans-serif; letter-spacing: 0; }
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 { letter-spacing: 0; }
+[dir="rtl"] .dropdown { right: auto; left: 0; }
+[dir="rtl"] .user-menu > button { padding: .3rem .3rem .3rem .8rem; }
+[dir="rtl"] .messages { right: auto; left: 16px; }
+[dir="rtl"] .alert .close { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .alert-success, [dir="rtl"] .alert-danger, [dir="rtl"] .alert-warning, [dir="rtl"] .alert-info { border-left-width: 1px; border-right-width: 4px; border-right-style: solid; }
+[dir="rtl"] .alert-success { border-right-color: var(--success); } [dir="rtl"] .alert-danger { border-right-color: var(--danger); }
+[dir="rtl"] .alert-warning { border-right-color: var(--warning); } [dir="rtl"] .alert-info { border-right-color: var(--info); }
+[dir="rtl"] .form-select { background-position: left .9rem center; padding-right: .95rem; padding-left: 2.4rem; }
+[dir="rtl"] .input-icon > i { left: auto; right: .95rem; }
+[dir="rtl"] .input-icon .form-control, [dir="rtl"] .input-icon .form-select { padding-left: .95rem; padding-right: 2.6rem; }
+[dir="rtl"] .input-icon .toggle-pass { right: auto; left: .6rem; }
+[dir="rtl"] .non-field-errors ul { padding-left: 0; padding-right: 1.1rem; }
+[dir="rtl"] .search-bar .field + .field { border-left: 0; border-right: 1px solid var(--line); }
+[dir="rtl"] .hero-illustration { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .float-card.one { left: auto; right: -30px; } [dir="rtl"] .float-card.two { right: auto; left: -10px; }
+[dir="rtl"] .step::before { right: auto; left: 1.3rem; }
+[dir="rtl"] .doctor-meta i { margin-right: 0; margin-left: .25rem; }
+[dir="rtl"] .hours-table td:last-child, [dir="rtl"] .appt-row .when, [dir="rtl"] .info-list dd { text-align: left; }
+[dir="rtl"] .table th { text-align: right; }
+[dir="rtl"] .table td[style*="text-align:right"] { text-align: left !important; }
+[dir="rtl"] .sidebar { border-right: 0; border-left: 1px solid var(--line); }
+[dir="rtl"] .auth-aside::after { right: auto; left: -160px; }
+[dir="rtl"] .next-appt::after { right: auto; left: -60px; }
+[dir="rtl"] .timeline { padding-left: 0; padding-right: 1.6rem; }
+[dir="rtl"] .timeline::before { left: auto; right: 8px; }
+[dir="rtl"] .timeline-item::before { left: auto; right: -1.6rem; }
+[dir="rtl"] .fa-arrow-right, [dir="rtl"] .fa-chevron-left, [dir="rtl"] .fa-chevron-right, [dir="rtl"] .fa-arrow-right-from-bracket { transform: scaleX(-1); }
+[dir="rtl"] .review .text-xs[style*="margin-left:auto"] { margin-left: 0 !important; margin-right: auto; }
+.lang-switch { display: inline-flex; }
+.lang-switch button { background: none; border: 1px solid var(--line); border-radius: 999px; padding: .4rem .8rem; font: inherit; font-size: .85rem; font-weight: 600; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: .4rem; }
+.lang-switch button:hover { border-color: var(--primary); color: var(--primary); }
+@media (max-width: 960px) {
+  [dir="rtl"] .header-actions { margin-left: 0; margin-right: auto; }
+  [dir="rtl"] .sidebar { border-left: 0; }
+}
+@media (max-width: 640px) {
+  [dir="rtl"] .search-bar .field + .field { border-right: 0; }
+  [dir="rtl"] .appt-row .when { text-align: right; }
 }

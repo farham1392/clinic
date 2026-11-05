@@ -19,6 +19,18 @@ python manage.py migrate
 python manage.py seed_data          # add --flush to reset demo data
 python manage.py runserver
 ```
+
+On Windows (PowerShell):
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1   # if blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+python -m pip install -r requirements.txt
+python manage.py migrate
+python manage.py seed_data
+python manage.py runserver
+```
+`ModuleNotFoundError: No module named 'whitenoise'` means the requirements were not installed in the Python you are running; run `python -m pip install -r requirements.txt`.
+
 Open http://127.0.0.1:8000
 
 | Role    | Email                  | Password  |
@@ -52,3 +64,14 @@ python manage.py collectstatic --noinput
 gunicorn curapoint.wsgi
 ```
 Static files are served by WhiteNoise.
+
+## Languages (English / فارسی)
+The UI is bilingual. Use the globe button in the header to switch; Persian switches the layout to right-to-left and uses the Vazirmatn font. The browser's `Accept-Language` sets the language on the first visit.
+
+Translations are in `locale/fa/LC_MESSAGES/django.po`. The compiled `django.mo` is committed, so you don't need gettext just to run the app. After changing strings:
+```bash
+python manage.py makemessages -l fa --ignore=.venv --ignore=staticfiles --ignore=static
+# edit locale/fa/LC_MESSAGES/django.po
+python manage.py compilemessages --ignore=.venv
+```
+Demo content (doctor names, bios, appointment reasons) stays in English; specialty names are translated.

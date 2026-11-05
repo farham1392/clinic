@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 class AppointmentQuerySet(models.QuerySet):
@@ -18,15 +19,15 @@ class AppointmentQuerySet(models.QuerySet):
 
 class Appointment(models.Model):
     class Status(models.TextChoices):
-        PENDING = "pending", "Pending"
-        CONFIRMED = "confirmed", "Confirmed"
-        COMPLETED = "completed", "Completed"
-        CANCELLED = "cancelled", "Cancelled"
-        NO_SHOW = "no_show", "No-show"
+        PENDING = "pending", _("Pending")
+        CONFIRMED = "confirmed", _("Confirmed")
+        COMPLETED = "completed", _("Completed")
+        CANCELLED = "cancelled", _("Cancelled")
+        NO_SHOW = "no_show", _("No-show")
 
     class VisitType(models.TextChoices):
-        IN_PERSON = "in_person", "In-person visit"
-        VIDEO = "video", "Video consultation"
+        IN_PERSON = "in_person", _("In-person visit")
+        VIDEO = "video", _("Video consultation")
 
     patient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="appointments")
     doctor = models.ForeignKey("doctors.Doctor", on_delete=models.CASCADE, related_name="appointments")

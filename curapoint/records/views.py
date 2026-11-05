@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
+from django.utils.translation import gettext as _
 
 from core.decorators import patient_required
 
@@ -26,8 +27,8 @@ def metrics(request):
             metric = form.save(commit=False)
             metric.patient = request.user
             metric.save()
-            messages.success(request, f"{metric.get_metric_type_display()} reading saved.")
+            messages.success(request, _("%(metric)s reading saved.") % {"metric": metric.get_metric_type_display()})
             return redirect("records:metrics")
-        messages.error(request, "Please correct the errors below.")
+        messages.error(request, _("Please correct the errors below."))
     readings = HealthMetric.objects.filter(patient=request.user)[:50]
     return render(request, "records/metrics.html", {"form": form, "readings": readings})

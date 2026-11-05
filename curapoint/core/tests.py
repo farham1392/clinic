@@ -141,3 +141,23 @@ class CuraPointTests(TestCase):
         r = self.client.post(reverse("doctors:availability"), data)
         self.assertEqual(r.status_code, 200)
         self.assertEqual(self.doctor.availability.count(), 1)
+
+    def test_persian_language_switch(self):
+        response = self.client.post(reverse("set_language"), {"language": "fa", "next": reverse("core:home")})
+        self.assertRedirects(response, reverse("core:home"), fetch_redirect_response=False)
+        response = self.client.get(reverse("core:home"))
+        self.assertContains(response, 'lang="fa" dir="rtl"')
+        self.assertContains(response, "پیدا کردن پزشک")
+        self.assertContains(response, "دکتر Gregory House")
+        self.assertContains(response, "قلب و عروق")
+
+    def test_english_is_default(self):
+        response = self.client.get(reverse("doctors:list"))
+        self.assertContains(response, 'lang="en" dir="ltr"')
+        self.assertContains(response, "Find a doctor")
+        self.assertContains(response, "Dr. Gregory House")
+
+    def test_persian_validation_messages(self):
+        self.client.cookies["django_language"] = "fa"
+        response = self.book(self.patient, reason="x")
+        self.assertContains(response, "لطفاً دلیل مراجعه خود را بنویسید.")

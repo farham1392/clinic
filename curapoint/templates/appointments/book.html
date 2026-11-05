@@ -1,24 +1,25 @@
 {% extends "app_base.html" %}
-{% block title %}Book {{ doctor }}{% endblock %}
+{% load i18n %}
+{% block title %}{% blocktranslate %}Book {{ doctor }}{% endblocktranslate %}{% endblock %}
 {% block app_content %}
-<div class="app-head"><div><div class="breadcrumbs"><a href="{% url 'doctors:list' %}">Doctors</a> / <a href="{{ doctor.get_absolute_url }}">{{ doctor }}</a> / Book</div><h1>Book an appointment</h1></div></div>
+<div class="app-head"><div><div class="breadcrumbs"><a href="{% url 'doctors:list' %}">{% translate "Doctors" %}</a> / <a href="{{ doctor.get_absolute_url }}">{{ doctor }}</a> {% translate "/ Book" %}</div><h1>{% translate "Book an appointment" %}</h1></div></div>
 <form method="post" novalidate data-booking data-slots-url="{% url 'doctors:slots' doctor.slug %}">
   {% csrf_token %}
   <div class="dash-grid" style="margin-top:0">
     <div class="grid">
       {% include "partials/form_errors.html" %}
       <div class="card">
-        <div class="card-header"><h3><span class="text-primary">1.</span> Choose a date</h3></div>
+        <div class="card-header"><h3><span class="text-primary">1.</span> {% translate "Choose a date" %}</h3></div>
         {% include "partials/field.html" with field=form.date %}
-        <div class="card-header mt-2"><h3><span class="text-primary">2.</span> Pick a time</h3></div>
+        <div class="card-header mt-2"><h3><span class="text-primary">2.</span> {% translate "Pick a time" %}</h3></div>
         {{ form.time }}
         <div class="slot-grid" data-slots></div>
         {% for e in form.time.errors %}<span class="invalid-feedback">{{ e }}</span>{% endfor %}
       </div>
       <div class="card">
-        <div class="card-header"><h3><span class="text-primary">3.</span> Visit details</h3></div>
+        <div class="card-header"><h3><span class="text-primary">3.</span> {% translate "Visit details" %}</h3></div>
         <div class="form-group{% if form.visit_type.errors %} is-invalid{% endif %}">
-          <label class="form-label">Visit type</label>
+          <label class="form-label">{% translate "Visit type" %}</label>
           <div class="choice-cards">{% for radio in form.visit_type %}<label for="{{ radio.id_for_label }}">{{ radio.tag }} <i class="fa-solid {% if radio.data.value == 'video' %}fa-video{% else %}fa-hospital{% endif %}"></i> {{ radio.choice_label }}</label>{% endfor %}</div>
           {% for e in form.visit_type.errors %}<span class="invalid-feedback">{{ e }}</span>{% endfor %}
         </div>
@@ -32,12 +33,12 @@
         <div><strong style="color:var(--ink)">{{ doctor }}</strong><div class="text-sm text-primary">{{ doctor.specialty }}</div><div class="text-xs text-muted">{{ doctor.clinic_name }}</div></div>
       </div>
       <dl class="info-list">
-        <dt>Selected</dt><dd data-summary>No time selected</dd>
-        <dt>Location</dt><dd>{{ doctor.location|default:"-" }}</dd>
-        <dt>Consultation fee</dt><dd>${{ doctor.consultation_fee }}</dd>
+        <dt>{% translate "Selected" %}</dt><dd data-summary>{% translate "No time selected" %}</dd>
+        <dt>{% translate "Location" %}</dt><dd>{{ doctor.location|default:"-" }}</dd>
+        <dt>{% translate "Consultation fee" %}</dt><dd>${{ doctor.consultation_fee }}</dd>
       </dl>
-      <button type="submit" class="btn btn-primary btn-block btn-lg mt-3"><i class="fa-regular fa-calendar-check"></i> Confirm booking</button>
-      <p class="text-xs text-muted text-center mt-1 mb-0">The doctor will confirm your request. You can cancel any time before the visit.</p>
+      <button type="submit" class="btn btn-primary btn-block btn-lg mt-3"><i class="fa-regular fa-calendar-check"></i> {% translate "Confirm booking" %}</button>
+      <p class="text-xs text-muted text-center mt-1 mb-0">{% translate "The doctor will confirm your request. You can cancel any time before the visit." %}</p>
     </aside>
   </div>
 </form>

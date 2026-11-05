@@ -1,18 +1,19 @@
 {% extends "app_base.html" %}
-{% block title %}Medical records{% endblock %}
+{% load i18n %}
+{% block title %}{% translate "Medical records" %}{% endblock %}
 {% block app_content %}
-<div class="app-head"><div><h1>Medical records</h1><p>Diagnoses, prescriptions, lab results and more from your care team.</p></div></div>
-<div class="chip-filter mb-2"><a href="?" class="{% if not current_type %}is-active{% endif %}">All</a>{% for v, l in types %}<a href="?type={{ v }}" class="{% if current_type == v %}is-active{% endif %}">{{ l }}</a>{% endfor %}</div>
+<div class="app-head"><div><h1>{% translate "Medical records" %}</h1><p>{% translate "Diagnoses, prescriptions, lab results and more from your care team." %}</p></div></div>
+<div class="chip-filter mb-2"><a href="?" class="{% if not current_type %}is-active{% endif %}">{% translate "All" %}</a>{% for v, l in types %}<a href="?type={{ v }}" class="{% if current_type == v %}is-active{% endif %}">{{ l }}</a>{% endfor %}</div>
 <div class="card">
   {% for r in records %}
   <div class="record-item">
     <span class="icon-tile"><i class="fa-solid {{ r.icon }}"></i></span>
     <div class="grow"><div class="flex justify-between wrap gap-1"><strong style="color:var(--ink)">{{ r.title }}</strong><span class="text-xs text-muted">{{ r.record_date|date:"M j, Y" }}</span></div>
-      <div class="text-sm"><span class="badge badge-primary">{{ r.get_record_type_display }}</span> {% if r.doctor %}<span class="text-muted">by {{ r.doctor }}</span>{% endif %}</div>
+      <div class="text-sm"><span class="badge badge-primary">{{ r.get_record_type_display }}</span> {% if r.doctor %}<span class="text-muted">{% blocktranslate with d=r.doctor %}by {{ d }}{% endblocktranslate %}</span>{% endif %}</div>
       {% if r.description %}<p class="text-sm mt-1 mb-0">{{ r.description|linebreaksbr }}</p>{% endif %}
-      {% if r.attachment %}<a href="{{ r.attachment.url }}" class="text-sm"><i class="fa-solid fa-paperclip"></i> Attachment</a>{% endif %}
+      {% if r.attachment %}<a href="{{ r.attachment.url }}" class="text-sm"><i class="fa-solid fa-paperclip"></i> {% translate "Attachment" %}</a>{% endif %}
     </div>
   </div>
-  {% empty %}<div class="empty-state"><i class="fa-solid fa-folder-open"></i><h3>No records yet</h3><p>Records added by your doctors will appear here.</p></div>{% endfor %}
+  {% empty %}<div class="empty-state"><i class="fa-solid fa-folder-open"></i><h3>{% translate "No records yet" %}</h3><p>{% translate "Records added by your doctors will appear here." %}</p></div>{% endfor %}
 </div>
 {% endblock %}

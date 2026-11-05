@@ -1,15 +1,16 @@
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class MedicalRecord(models.Model):
     class RecordType(models.TextChoices):
-        DIAGNOSIS = "diagnosis", "Diagnosis"
-        PRESCRIPTION = "prescription", "Prescription"
-        LAB_RESULT = "lab_result", "Lab result"
-        VACCINATION = "vaccination", "Vaccination"
-        IMAGING = "imaging", "Imaging"
-        NOTE = "note", "Clinical note"
+        DIAGNOSIS = "diagnosis", _("Diagnosis")
+        PRESCRIPTION = "prescription", _("Prescription")
+        LAB_RESULT = "lab_result", _("Lab result")
+        VACCINATION = "vaccination", _("Vaccination")
+        IMAGING = "imaging", _("Imaging")
+        NOTE = "note", _("Clinical note")
 
     patient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="medical_records")
     doctor = models.ForeignKey("doctors.Doctor", on_delete=models.SET_NULL, null=True, blank=True, related_name="records")
@@ -42,12 +43,12 @@ class MedicalRecord(models.Model):
 
 class HealthMetric(models.Model):
     class MetricType(models.TextChoices):
-        HEART_RATE = "heart_rate", "Heart rate"
-        BLOOD_PRESSURE = "blood_pressure", "Blood pressure"
-        GLUCOSE = "glucose", "Blood glucose"
-        WEIGHT = "weight", "Weight"
-        TEMPERATURE = "temperature", "Body temperature"
-        OXYGEN = "oxygen", "Oxygen saturation"
+        HEART_RATE = "heart_rate", _("Heart rate")
+        BLOOD_PRESSURE = "blood_pressure", _("Blood pressure")
+        GLUCOSE = "glucose", _("Blood glucose")
+        WEIGHT = "weight", _("Weight")
+        TEMPERATURE = "temperature", _("Body temperature")
+        OXYGEN = "oxygen", _("Oxygen saturation")
 
     UNITS = {
         "heart_rate": "bpm",

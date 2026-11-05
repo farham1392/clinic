@@ -1,59 +1,60 @@
 {% extends "app_base.html" %}
+{% load i18n %}
 {% load cura humanize %}
-{% block title %}Doctor dashboard{% endblock %}
+{% block title %}{% translate "Doctor dashboard" %}{% endblock %}
 {% block app_content %}
 <div class="app-head">
-  <div><h1>Good day, {{ doctor }}</h1><p>{% now "l, F j, Y" %} · You have {{ stats.today }} appointment{{ stats.today|pluralize }} today.</p></div>
-  <div class="flex gap-1"><a href="{% url 'doctors:availability' %}" class="btn btn-outline"><i class="fa-regular fa-clock"></i> Availability</a><a href="{% url 'appointments:list' %}" class="btn btn-primary"><i class="fa-regular fa-calendar"></i> All appointments</a></div>
+  <div><h1>{% blocktranslate %}Good day, {{ doctor }}{% endblocktranslate %}</h1><p>{% now "l, F j, Y" %} · {% blocktranslate count n=stats.today %}You have {{ n }} appointment today.{% plural %}You have {{ n }} appointments today.{% endblocktranslate %}</p></div>
+  <div class="flex gap-1"><a href="{% url 'doctors:availability' %}" class="btn btn-outline"><i class="fa-regular fa-clock"></i> {% translate "Availability" %}</a><a href="{% url 'appointments:list' %}" class="btn btn-primary"><i class="fa-regular fa-calendar"></i> {% translate "All appointments" %}</a></div>
 </div>
 <div class="grid grid-4 stats-grid">
-  <div class="stat-card"><span class="icon-tile"><i class="fa-regular fa-calendar-check"></i></span><div><div class="value">{{ stats.today }}</div><div class="label">Today</div></div></div>
-  <div class="stat-card"><span class="icon-tile tile-warning"><i class="fa-solid fa-hourglass-half"></i></span><div><div class="value">{{ stats.pending }}</div><div class="label">Pending requests</div></div></div>
-  <div class="stat-card"><span class="icon-tile tile-accent"><i class="fa-solid fa-user-group"></i></span><div><div class="value">{{ stats.patients }}</div><div class="label">Total patients</div></div></div>
-  <div class="stat-card"><span class="icon-tile tile-success"><i class="fa-solid fa-sack-dollar"></i></span><div><div class="value">${{ stats.revenue|default:0|floatformat:0|intcomma }}</div><div class="label">Earned ({{ stats.completed }} visits)</div></div></div>
+  <div class="stat-card"><span class="icon-tile"><i class="fa-regular fa-calendar-check"></i></span><div><div class="value">{{ stats.today }}</div><div class="label">{% translate "Today" %}</div></div></div>
+  <div class="stat-card"><span class="icon-tile tile-warning"><i class="fa-solid fa-hourglass-half"></i></span><div><div class="value">{{ stats.pending }}</div><div class="label">{% translate "Pending requests" %}</div></div></div>
+  <div class="stat-card"><span class="icon-tile tile-accent"><i class="fa-solid fa-user-group"></i></span><div><div class="value">{{ stats.patients }}</div><div class="label">{% translate "Total patients" %}</div></div></div>
+  <div class="stat-card"><span class="icon-tile tile-success"><i class="fa-solid fa-sack-dollar"></i></span><div><div class="value">${{ stats.revenue|default:0|floatformat:0|intcomma }}</div><div class="label">{% blocktranslate with n=stats.completed %}Earned ({{ n }} visits){% endblocktranslate %}</div></div></div>
 </div>
 <div class="dash-grid">
   <div class="grid">
     <div class="card">
-      <div class="card-header"><h3>Today's schedule</h3><span class="badge badge-primary">{{ today_schedule|length }} visits</span></div>
+      <div class="card-header"><h3>{% translate "Today's schedule" %}</h3><span class="badge badge-primary">{% blocktranslate with n=today_schedule|length %}{{ n }} visits{% endblocktranslate %}</span></div>
       {% for appt in today_schedule %}
       <div class="appt-row">
         <div class="date-box" style="width:70px"><small>{{ appt.time|time:"A" }}</small><strong>{{ appt.time|time:"g:i" }}</strong></div>
         {% include "partials/avatar.html" with person=appt.patient size="avatar-sm" %}
         <div class="info"><strong><a href="{{ appt.get_absolute_url }}" style="color:inherit">{{ appt.patient }}</a></strong><span>{{ appt.reason|truncatechars:50 }}</span></div>
         <div class="flex gap-1 items-center"><span class="badge badge-{{ appt.status_color }}">{{ appt.get_status_display }}</span>
-          {% if appt.status == "confirmed" %}<form method="post" action="{% url 'appointments:quick_action' appt.pk 'complete' %}">{% csrf_token %}<button class="btn btn-soft btn-sm" title="Mark completed"><i class="fa-solid fa-check"></i> Done</button></form>{% endif %}
+          {% if appt.status == "confirmed" %}<form method="post" action="{% url 'appointments:quick_action' appt.pk 'complete' %}">{% csrf_token %}<button class="btn btn-soft btn-sm" title="{% translate "Mark completed" %}"><i class="fa-solid fa-check"></i> {% translate "Done" %}</button></form>{% endif %}
         </div>
       </div>
-      {% empty %}<div class="empty-state"><i class="fa-solid fa-mug-hot"></i><p>No appointments scheduled for today.</p></div>{% endfor %}
+      {% empty %}<div class="empty-state"><i class="fa-solid fa-mug-hot"></i><p>{% translate "No appointments scheduled for today." %}</p></div>{% endfor %}
     </div>
     <div class="card">
-      <div class="card-header"><h3>Appointment requests</h3><a class="card-link" href="{% url 'appointments:list' %}?status=pending">View all</a></div>
+      <div class="card-header"><h3>{% translate "Appointment requests" %}</h3><a class="card-link" href="{% url 'appointments:list' %}?status=pending">{% translate "View all" %}</a></div>
       {% for appt in pending_requests %}
       <div class="appt-row">
         <div class="date-box"><small>{{ appt.date|date:"M" }}</small><strong>{{ appt.date|date:"d" }}</strong></div>
         {% include "partials/avatar.html" with person=appt.patient size="avatar-sm" %}
         <div class="info"><strong>{{ appt.patient }}</strong><span>{{ appt.time|time:"g:i A" }} · {{ appt.reason|truncatechars:40 }}</span></div>
         <div class="flex gap-1">
-          <form method="post" action="{% url 'appointments:quick_action' appt.pk 'confirm' %}">{% csrf_token %}<button class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i> Accept</button></form>
-          <form method="post" action="{% url 'appointments:quick_action' appt.pk 'decline' %}" data-confirm="Decline this request?">{% csrf_token %}<button class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></button></form>
+          <form method="post" action="{% url 'appointments:quick_action' appt.pk 'confirm' %}">{% csrf_token %}<button class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i> {% translate "Accept" %}</button></form>
+          <form method="post" action="{% url 'appointments:quick_action' appt.pk 'decline' %}" data-confirm="{% translate "Decline this request?" %}">{% csrf_token %}<button class="btn btn-danger btn-sm"><i class="fa-solid fa-xmark"></i></button></form>
         </div>
       </div>
-      {% empty %}<p class="text-muted mb-0">No pending requests.</p>{% endfor %}
+      {% empty %}<p class="text-muted mb-0">{% translate "No pending requests." %}</p>{% endfor %}
     </div>
   </div>
   <div class="grid">
     <div class="card">
-      <div class="card-header"><h3>This week</h3><span class="text-sm text-muted">{{ stats.week }} visits</span></div>
+      <div class="card-header"><h3>{% translate "This week" %}</h3><span class="text-sm text-muted">{% blocktranslate with n=stats.week %}{{ n }} visits{% endblocktranslate %}</span></div>
       <div class="bar-chart">{% for d in week %}<div class="bar {% if d.is_today %}today{% endif %}"><span>{{ d.count }}</span><span class="fill" style="height:{% widthratio d.count max_week 100 %}%"></span><span>{{ d.date|date:"D" }}</span></div>{% endfor %}</div>
     </div>
     <div class="card">
-      <div class="card-header"><h3>Upcoming confirmed</h3></div>
-      {% for appt in upcoming %}{% include "partials/appt_row.html" with as_doctor=True %}{% empty %}<p class="text-muted text-sm mb-0">Nothing scheduled.</p>{% endfor %}
+      <div class="card-header"><h3>{% translate "Upcoming confirmed" %}</h3></div>
+      {% for appt in upcoming %}{% include "partials/appt_row.html" with as_doctor=True %}{% empty %}<p class="text-muted text-sm mb-0">{% translate "Nothing scheduled." %}</p>{% endfor %}
     </div>
     <div class="card">
-      <div class="card-header"><h3>Recent reviews</h3><span class="badge badge-warning"><i class="fa-solid fa-star"></i> {{ doctor.rating|floatformat:1 }}</span></div>
-      {% for r in recent_reviews %}<div class="review">{% include "partials/stars.html" with value=r.rating %}<p class="text-sm mb-0 mt-1">{{ r.comment|default:"(no comment)"|truncatechars:110 }}</p><span class="text-xs text-muted">{{ r.patient.first_name }} · {{ r.created_at|timesince }} ago</span></div>{% empty %}<p class="text-muted text-sm mb-0">No reviews yet.</p>{% endfor %}
+      <div class="card-header"><h3>{% translate "Recent reviews" %}</h3><span class="badge badge-warning"><i class="fa-solid fa-star"></i> {{ doctor.rating|floatformat:1 }}</span></div>
+      {% for r in recent_reviews %}<div class="review">{% include "partials/stars.html" with value=r.rating %}<p class="text-sm mb-0 mt-1">{{ r.comment|default:_("(no comment)")|truncatechars:110 }}</p><span class="text-xs text-muted">{{ r.patient.first_name }} · {% blocktranslate with t=r.created_at|timesince %}{{ t }} ago{% endblocktranslate %}</span></div>{% empty %}<p class="text-muted text-sm mb-0">{% translate "No reviews yet." %}</p>{% endfor %}
     </div>
   </div>
 </div>

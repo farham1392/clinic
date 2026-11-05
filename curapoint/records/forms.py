@@ -1,5 +1,6 @@
 from django import forms
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from accounts.forms import StyledFormMixin
 
@@ -19,6 +20,7 @@ class MedicalRecordForm(StyledFormMixin, forms.ModelForm):
     class Meta:
         model = MedicalRecord
         fields = ["record_type", "title", "description", "record_date", "attachment"]
+        labels = {"record_type": _("Record type"), "title": _("Title"), "description": _("Description"), "record_date": _("Record date"), "attachment": _("Attachment")}
         widgets = {
             "record_date": forms.DateInput(attrs={"type": "date"}, format="%Y-%m-%d"),
             "description": forms.Textarea(attrs={"rows": 4}),
@@ -27,13 +29,13 @@ class MedicalRecordForm(StyledFormMixin, forms.ModelForm):
     def clean_record_date(self):
         d = self.cleaned_data["record_date"]
         if d > timezone.localdate():
-            raise forms.ValidationError("Record date can't be in the future.")
+            raise forms.ValidationError(_("Record date can't be in the future."))
         return d
 
     def clean_attachment(self):
         f = self.cleaned_data.get("attachment")
         if f and hasattr(f, "size") and f.size > 10 * 1024 * 1024:
-            raise forms.ValidationError("Attachments must be 10 MB or smaller.")
+            raise forms.ValidationError(_("Attachments must be 10 MB or smaller."))
         return f
 
 
@@ -42,7 +44,8 @@ class HealthMetricForm(StyledFormMixin, forms.ModelForm):
         model = HealthMetric
         fields = ["metric_type", "value", "value_secondary", "recorded_at", "note"]
         widgets = {"recorded_at": forms.DateTimeInput(attrs={"type": "datetime-local"}, format="%Y-%m-%dT%H:%M")}
-        labels = {"value": "Value", "value_secondary": "Diastolic (BP only)"}
+        labels = {"metric_type": _("Metric"), "value": _("Value"), "value_secondary": _("Diastolic (BP only)"), "recorded_at": _("Recorded at"), "note": _("Note")}
+        help_texts = {"value_secondary": ""}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -52,7 +55,7 @@ class HealthMetricForm(StyledFormMixin, forms.ModelForm):
     def clean_recorded_at(self):
         value = self.cleaned_data["recorded_at"]
         if value > timezone.now() + timezone.timedelta(minutes=5):
-            raise forms.ValidationError("Readings can't be recorded in the future.")
+            raise forms.ValidationError(_("Readings can't be recorded in the future."))
         return value
 
     def clean(self):
@@ -61,12 +64,12 @@ class HealthMetricForm(StyledFormMixin, forms.ModelForm):
         if mtype and value is not None:
             lo, hi = METRIC_RANGES[mtype]
             if not lo <= value <= hi:
-                self.add_error("value", f"Value should be between {lo} and {hi}.")
+                self.add_error("value", _("Value should be between %(lo)s and %(hi)s.") % {"lo": lo, "hi": hi})
         if mtype == HealthMetric.MetricType.BLOOD_PRESSURE:
             if secondary is None:
-                self.add_error("value_secondary", "Enter the diastolic value for blood pressure.")
+                self.add_error("value_secondary", _("Enter the diastolic value for blood pressure."))
             elif value is not None and secondary >= value:
-                self.add_error("value_secondary", "Diastolic must be lower than systolic.")
+                self.add_error("value_secondary", _("Diastolic must be lower than systolic."))
         elif secondary is not None:
             cleaned["value_secondary"] = None
         return cleaned

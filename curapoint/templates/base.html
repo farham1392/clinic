@@ -1,9 +1,10 @@
-{% load static %}<!DOCTYPE html>
-<html lang="en">
+{% load static i18n %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{% block meta_description %}CuraPoint - find trusted doctors, book appointments and manage your health in one place.{% endblock %}">
+  <meta name="description" content="{% block meta_description %}{% translate "CuraPoint - find trusted doctors, book appointments and manage your health in one place." %}{% endblock %}">
   <title>{% block title %}{{ SITE_NAME }}{% endblock %} · {{ SITE_TAGLINE }}</title>
   <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
   <link rel="stylesheet" href="{% static 'vendor/fa/css/all.min.css' %}">
@@ -17,6 +18,7 @@
     {% block content %}{% endblock %}
   </main>
   {% block footer %}{% include "partials/footer.html" %}{% endblock %}
+  {{ JS_I18N|json_script:"i18n-strings" }}
   <script src="{% static 'js/main.js' %}" defer></script>
   {% block extra_js %}{% endblock %}
 </body>

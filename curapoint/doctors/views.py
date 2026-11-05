@@ -7,6 +7,8 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_http_methods
+from django.utils.translation import get_language_bidi, gettext as _
+from django.utils.formats import time_format
 
 from appointments.models import Appointment
 from core.decorators import doctor_required, patient_required
@@ -82,9 +84,9 @@ def doctor_slots(request, slug):
     try:
         day = date_cls.fromisoformat(request.GET.get("date", ""))
     except ValueError:
-        return JsonResponse({"error": "Invalid date. Use YYYY-MM-DD."}, status=400)
+        return JsonResponse({"error": _("Invalid date. Use YYYY-MM-DD.")}, status=400)
     slots = doctor.slots_for(day) if day >= timezone.localdate() else []
-    return JsonResponse({"date": day.isoformat(), "slots": [{"value": s.strftime("%H:%M"), "label": s.strftime("%I:%M %p").lstrip("0")} for s in slots]})
+    return JsonResponse({"date": day.isoformat(), "slots": [{"value": s.strftime("%H:%M"), "label": time_format(s, "H:i" if get_language_bidi() else "g:i A")} for s in slots]})
 
 
 @patient_required
@@ -95,7 +97,7 @@ def add_review(request, slug):
         doctor=doctor, patient=request.user, status=Appointment.Status.COMPLETED, review__isnull=True
     ).order_by("-date").first()
     if appointment is None:
-        messages.error(request, "You can review a doctor after a completed appointment.")
+        messages.error(request, _("You can review a doctor after a completed appointment."))
         return redirect(doctor)
     form = ReviewForm(request.POST)
     if form.is_valid():
@@ -103,9 +105,9 @@ def add_review(request, slug):
         review.doctor, review.patient, review.appointment = doctor, request.user, appointment
         review.save()
         doctor.refresh_rating()
-        messages.success(request, "Thanks for your feedback!")
+        messages.success(request, _("Thanks for your feedback!"))
     else:
-        messages.error(request, "Please choose a rating between 1 and 5.")
+        messages.error(request, _("Please choose a rating between 1 and 5."))
     return redirect(doctor)
 
 
@@ -117,7 +119,7 @@ def manage_availability(request):
     if request.method == "POST":
         if formset.is_valid():
             formset.save()
-            messages.success(request, "Availability updated.")
+            messages.success(request, _("Availability updated."))
             return redirect("doctors:availability")
-        messages.error(request, "Please fix the errors below.")
+        messages.error(request, _("Please fix the errors below."))
     return render(request, "doctors/availability.html", {"formset": formset})
