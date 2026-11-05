@@ -1,0 +1,23 @@
+{% extends "app_base.html" %}
+{% block title %}Health metrics{% endblock %}
+{% block app_content %}
+<div class="app-head"><div><h1>Health metrics</h1><p>Log readings to track trends over time.</p></div></div>
+<div class="dash-grid" style="margin-top:0">
+  <div class="card" style="padding:0">
+    <div class="table-wrap"><table class="table">
+      <thead><tr><th>Metric</th><th>Value</th><th>Recorded</th><th>Note</th></tr></thead>
+      <tbody>{% for m in readings %}<tr><td><i class="fa-solid {{ m.icon }} text-primary"></i> {{ m.get_metric_type_display }}</td><td><strong style="color:var(--ink)">{{ m.display_value }}</strong> <span class="text-xs text-muted">{{ m.unit }}</span></td><td class="text-sm">{{ m.recorded_at|date:"M j, Y g:i A" }}</td><td class="text-sm text-muted">{{ m.note }}</td></tr>
+      {% empty %}<tr><td colspan="4"><div class="empty-state"><i class="fa-solid fa-heart-pulse"></i><h3>No readings yet</h3><p>Add your first reading with the form.</p></div></td></tr>{% endfor %}</tbody>
+    </table></div>
+  </div>
+  <form method="post" class="card" novalidate>
+    {% csrf_token %}<h3>Add a reading</h3>
+    {% include "partials/form_errors.html" %}
+    {% include "partials/field.html" with field=form.metric_type %}
+    <div class="form-row">{% include "partials/field.html" with field=form.value %}{% include "partials/field.html" with field=form.value_secondary %}</div>
+    {% include "partials/field.html" with field=form.recorded_at %}
+    {% include "partials/field.html" with field=form.note %}
+    <button class="btn btn-primary btn-block" type="submit"><i class="fa-solid fa-plus"></i> Save reading</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "app_base.html" %}
+{% block title %}My patients{% endblock %}
+{% block app_content %}
+<div class="app-head"><div><h1>My patients</h1><p>Everyone who has booked with you.</p></div>
+  <form method="get" class="input-icon" style="min-width:260px"><i class="fa-solid fa-magnifying-glass"></i><input type="search" name="q" value="{{ q }}" class="form-control" placeholder="Search patients"></form></div>
+<div class="card" style="padding:0"><div class="table-wrap"><table class="table">
+  <thead><tr><th>Patient</th><th>Contact</th><th>Visits</th><th>Last visit</th><th></th></tr></thead>
+  <tbody>{% for p in patients %}<tr>
+    <td><div class="flex items-center gap-1">{% include "partials/avatar.html" with person=p size="avatar-sm" %}<div><strong style="color:var(--ink)">{{ p }}</strong><div class="text-xs text-muted">{% if p.age %}{{ p.age }} yrs{% endif %} {{ p.get_gender_display }}</div></div></div></td>
+    <td class="text-sm">{{ p.email }}<div class="text-xs text-muted">{{ p.phone }}</div></td>
+    <td><span class="badge badge-primary">{{ p.visit_count }}</span></td>
+    <td class="text-sm">{{ p.last_visit|date:"M j, Y" }}</td>
+    <td style="text-align:right"><a href="{% url 'dashboard:patient_detail' p.pk %}" class="btn btn-outline btn-sm">Open chart</a></td>
+  </tr>{% empty %}<tr><td colspan="5"><div class="empty-state"><i class="fa-solid fa-user-group"></i><p>No patients found.</p></div></td></tr>{% endfor %}</tbody>
+</table></div></div>
+{% endblock %}

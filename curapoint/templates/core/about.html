@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<section class="page-head"><div class="container"><div class="breadcrumbs"><a href="{% url 'core:home' %}">Home</a> / About</div><h1>About CuraPoint</h1><p>Healthcare that's easy to find, book and manage.</p></div></section>
+<section class="section"><div class="container grid grid-2" style="align-items:center">
+  <div>
+    <span class="section-tag">Our mission</span>
+    <h2>Making quality care accessible to everyone</h2>
+    <p class="text-muted">CuraPoint connects patients with verified doctors across dozens of specialties. Patients book in seconds and keep their records in one place. Doctors manage their schedule and patients from one dashboard.</p>
+    <ul class="list-plain mt-2">
+      <li><i class="fa-solid fa-circle-check"></i> Verified, licensed healthcare professionals</li>
+      <li><i class="fa-solid fa-circle-check"></i> Real-time availability and instant booking</li>
+      <li><i class="fa-solid fa-circle-check"></i> Secure medical records and health tracking</li>
+      <li><i class="fa-solid fa-circle-check"></i> In-person and video consultations</li>
+    </ul>
+    <a href="{% url 'doctors:list' %}" class="btn btn-primary mt-2">Find a doctor</a>
+  </div>
+  <div class="grid grid-2">
+    <div class="stat-card"><span class="icon-tile"><i class="fa-solid fa-user-doctor"></i></span><div><div class="value">500+</div><div class="label">Doctors</div></div></div>
+    <div class="stat-card"><span class="icon-tile tile-accent"><i class="fa-solid fa-users"></i></span><div><div class="value">50k</div><div class="label">Patients</div></div></div>
+    <div class="stat-card"><span class="icon-tile tile-success"><i class="fa-solid fa-calendar-check"></i></span><div><div class="value">120k</div><div class="label">Visits booked</div></div></div>
+    <div class="stat-card"><span class="icon-tile tile-warning"><i class="fa-solid fa-star"></i></span><div><div class="value">4.8</div><div class="label">Avg. rating</div></div></div>
+  </div>
+</div></section>
+{% endblock %}

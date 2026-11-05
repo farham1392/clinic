@@ -1,0 +1,6 @@
+<div class="form-group{% if field.errors %} is-invalid{% endif %}" id="group-{{ field.name }}">
+  {% if field.label %}<label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{% if not field.field.required %} <span class="text-muted text-xs">(optional)</span>{% endif %}</label>{% endif %}
+  {% if icon %}<div class="input-icon"><i class="fa-solid {{ icon }}"></i>{{ field }}</div>{% else %}{{ field }}{% endif %}
+  {% if field.help_text %}<div class="form-help">{{ field.help_text }}</div>{% endif %}
+  {% for error in field.errors %}<span class="invalid-feedback">{{ error }}</span>{% endfor %}
+</div>

@@ -1,0 +1,38 @@
+{% extends "app_base.html" %}
+{% block title %}Appointments{% endblock %}
+{% block app_content %}
+<div class="app-head">
+  <div><h1>Appointments</h1><p>{% if user.is_doctor %}Manage visit requests and your schedule.{% else %}Your upcoming and past visits.{% endif %}</p></div>
+  {% if user.is_patient %}<a href="{% url 'doctors:list' %}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New appointment</a>{% endif %}
+</div>
+<div class="flex justify-between items-center wrap gap-1 mb-2">
+  <nav class="tabs"><a href="?tab=upcoming" class="{% if tab == 'upcoming' %}is-active{% endif %}">Upcoming</a><a href="?tab=past" class="{% if tab == 'past' %}is-active{% endif %}">Past</a><a href="?tab=all" class="{% if tab == 'all' %}is-active{% endif %}">All</a></nav>
+  <div class="chip-filter"><a href="?tab={{ tab }}" class="{% if not status %}is-active{% endif %}">Any status</a>{% for v, l in statuses %}<a href="?tab={{ tab }}&status={{ v }}" class="{% if status == v %}is-active{% endif %}">{{ l }}</a>{% endfor %}</div>
+</div>
+<div class="card" style="padding:0">
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th>{% if user.is_doctor %}Patient{% else %}Doctor{% endif %}</th><th>Date & time</th><th>Type</th><th>Reason</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+      {% for a in appointments %}
+        <tr>
+          <td><div class="flex items-center gap-1">{% if user.is_doctor %}{% include "partials/avatar.html" with person=a.patient size="avatar-sm" %}<div><strong style="color:var(--ink)">{{ a.patient }}</strong><div class="text-xs text-muted">{{ a.patient.email }}</div></div>{% else %}{% include "partials/avatar.html" with person=a.doctor.user image=a.doctor.image size="avatar-sm" %}<div><strong style="color:var(--ink)">{{ a.doctor }}</strong><div class="text-xs text-muted">{{ a.doctor.specialty }}</div></div>{% endif %}</div></td>
+          <td><strong style="color:var(--ink)">{{ a.date|date:"D, M j, Y" }}</strong><div class="text-xs text-muted">{{ a.time|time:"g:i A" }}</div></td>
+          <td>{% if a.visit_type == "video" %}<span class="badge badge-accent"><i class="fa-solid fa-video"></i> Video</span>{% else %}<span class="badge"><i class="fa-solid fa-hospital"></i> In-person</span>{% endif %}</td>
+          <td class="text-sm">{{ a.reason|truncatechars:40 }}</td>
+          <td><span class="badge badge-{{ a.status_color }}">{{ a.get_status_display }}</span></td>
+          <td style="text-align:right;white-space:nowrap">
+            {% if user.is_doctor and a.status == "pending" %}
+              <form method="post" action="{% url 'appointments:quick_action' a.pk 'confirm' %}" style="display:inline">{% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}"><button class="btn btn-success btn-sm">Confirm</button></form>
+            {% endif %}
+            <a href="{{ a.get_absolute_url }}" class="btn btn-outline btn-sm">View</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="6"><div class="empty-state"><i class="fa-regular fa-calendar"></i><h3>No appointments here</h3>{% if user.is_patient %}<a href="{% url 'doctors:list' %}" class="btn btn-soft">Find a doctor</a>{% endif %}</div></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

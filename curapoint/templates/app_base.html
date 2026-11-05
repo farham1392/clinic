@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load cura %}
+{% block footer %}{% endblock %}
+{% block content %}
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Dashboard navigation">
+    {% if user.is_doctor %}
+      <div class="label">Practice</div>
+      <a href="{% url 'dashboard:doctor' %}" class="{% active 'dashboard:doctor' %}"><i class="fa-solid fa-table-columns"></i> Overview</a>
+      <a href="{% url 'appointments:list' %}" class="{% active 'appointments:list' 'appointments:detail' %}"><i class="fa-regular fa-calendar-check"></i> Appointments</a>
+      <a href="{% url 'dashboard:patients' %}" class="{% active 'dashboard:patients' 'dashboard:patient_detail' %}"><i class="fa-solid fa-user-group"></i> My patients</a>
+      <a href="{% url 'doctors:availability' %}" class="{% active 'doctors:availability' %}"><i class="fa-regular fa-clock"></i> Availability</a>
+      <div class="label">Account</div>
+      {% if user.doctor_profile %}<a href="{{ user.doctor_profile.get_absolute_url }}"><i class="fa-regular fa-id-badge"></i> Public profile</a>{% endif %}
+      <a href="{% url 'accounts:profile' %}" class="{% active 'accounts:profile' %}"><i class="fa-solid fa-gear"></i> Settings</a>
+    {% else %}
+      <div class="label">My health</div>
+      <a href="{% url 'dashboard:patient' %}" class="{% active 'dashboard:patient' %}"><i class="fa-solid fa-table-columns"></i> Overview</a>
+      <a href="{% url 'appointments:list' %}" class="{% active 'appointments:list' 'appointments:detail' 'appointments:book' %}"><i class="fa-regular fa-calendar-check"></i> Appointments</a>
+      <a href="{% url 'records:list' %}" class="{% active 'records:list' %}"><i class="fa-solid fa-file-medical"></i> Medical records</a>
+      <a href="{% url 'records:metrics' %}" class="{% active 'records:metrics' %}"><i class="fa-solid fa-heart-pulse"></i> Health metrics</a>
+      <a href="{% url 'doctors:list' %}"><i class="fa-solid fa-user-doctor"></i> Find a doctor</a>
+      <div class="label">Account</div>
+      <a href="{% url 'accounts:profile' %}" class="{% active 'accounts:profile' %}"><i class="fa-solid fa-gear"></i> Settings</a>
+      <div class="promo"><strong>Need help now?</strong>Call our 24/7 care line<br><b>{{ SUPPORT_PHONE }}</b></div>
+    {% endif %}
+  </aside>
+  <section class="app-main">
+    {% block app_content %}{% endblock %}
+  </section>
+</div>
+{% endblock %}

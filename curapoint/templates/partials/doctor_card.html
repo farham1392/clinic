@@ -1,0 +1,23 @@
+<article class="doctor-card">
+  <div class="top">
+    {% if doctor.image %}<img class="doc-photo" src="{{ doctor.image.url }}" alt="{{ doctor }}" loading="lazy">{% else %}{% include "partials/avatar.html" with person=doctor.user size="avatar-lg" %}{% endif %}
+    <div class="grow">
+      <h3><a href="{{ doctor.get_absolute_url }}">{{ doctor }}</a></h3>
+      <div class="spec">{{ doctor.specialty }}</div>
+      <div class="flex items-center gap-1 mt-1">{% include "partials/stars.html" with value=doctor.rating %}<span class="text-xs text-muted">{{ doctor.rating|floatformat:1 }} ({{ doctor.review_count }})</span></div>
+    </div>
+  </div>
+  <div class="doctor-meta">
+    {% if doctor.is_accepting_patients %}<span class="text-success"><i class="fa-solid fa-circle-check"></i>Accepting patients</span>{% endif %}
+    <span><i class="fa-solid fa-briefcase-medical"></i>{{ doctor.years_experience }} yrs exp.</span>
+    {% if doctor.location %}<span><i class="fa-solid fa-location-dot"></i>{{ doctor.location }}</span>{% endif %}
+    {% if doctor.offers_video %}<span><i class="fa-solid fa-video"></i>Video visits</span>{% endif %}
+  </div>
+  <div class="bottom">
+    <span class="price">${{ doctor.consultation_fee|floatformat:0 }} <small>/ visit</small></span>
+    <div class="flex gap-1">
+      <a href="{{ doctor.get_absolute_url }}" class="btn btn-outline btn-sm">Profile</a>
+      <a href="{% url 'appointments:book' doctor.slug %}" class="btn btn-primary btn-sm">Book</a>
+    </div>
+  </div>
+</article>
